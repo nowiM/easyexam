@@ -1,5 +1,5 @@
 import Link from 'next/link'
-
+import Control from './Control';
 import "./globals.css";
 
 export const metadata = {
@@ -21,12 +21,8 @@ const RootLayout = async ({ children }) => {
             topices.map(topice => <li key={topice.id}><Link href={`/test/${topice.id}`}>{topice.title}</Link></li>)
           }
         </ol>
-
-        <ul>
-          <li><Link href='/create'>Create</Link></li>
-          <li><Link href='/update'>Update</Link></li>
-          <li><Link href='/delete'>Delete</Link></li>
-        </ul>
+        
+        <Control />
 
         {children}
       </body>
