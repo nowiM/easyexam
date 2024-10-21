@@ -1,3 +1,4 @@
+// app/create/page.js
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -10,10 +11,14 @@ const Create = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        const fristResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/topices`);
+        const data = await fristResponse.json();
+        const id = data.length === 0 ? 1 : data[data.length - 1].id + 1
+
         const response = await fetch('/api/topices', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ title, questions })
+            body: JSON.stringify({ id, title, questions })
         });
 
         if (response.ok) {

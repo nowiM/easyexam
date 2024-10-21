@@ -26,6 +26,11 @@ const TestPage = ({ params }) => {
                 console.error('Failed to fetch topic');
                 router.push('/'); // 데이터를 찾지 못하면 홈으로 이동
             }
+
+            const answerSresponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/answers`);
+            const data = await answerSresponse.json();
+
+            console.log(data);
         };
 
         fetchData();
@@ -40,19 +45,36 @@ const TestPage = ({ params }) => {
                 [field]: value,
             };
 
-            // 로컬 스토리지에 저장
-            localStorage.setItem(`answers-${params.id}`, JSON.stringify(updatedAnswers));
-
             return updatedAnswers;
         });
     };
 
-    // 제출 처리 함수
     const handleSubmit = async (e) => {
         e.preventDefault();
+    
+        // 제출된 답안 출력
         console.log("제출된 답안:", answers);
-
-        // 필요 시 서버로 데이터 전송 또는 추가 처리
+    
+        try {
+            console.log(answers);
+            // 서버로 POST 요청
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/answers`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ answers }),
+            });
+    
+            if (response.ok) {
+                const result = await response.json();
+                console.log('답안이 성공적으로 저장되었습니다:', result);
+            } else {
+                console.error('답안 저장 실패:', response.statusText);
+            }
+        } catch (error) {
+            console.error('서버와의 통신 중 오류 발생:', error);
+        }
     };
 
     let questions = [];

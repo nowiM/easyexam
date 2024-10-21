@@ -10,7 +10,7 @@ export const metadata = {
 const RootLayout = async ({ children }) => {
   const response = await fetch(process.env.NEXT_PUBLIC_API_URL + 'api/topices', { cache: 'no-store' });
   const topices = await response.json();
-
+  console.log(topices);
   return (
     <html>
       <body>
