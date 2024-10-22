@@ -40,12 +40,13 @@ const Create = () => {
                         placeholder="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                    />
+                        />
                 </p>
                 <p>
                     <input
-                        type="text"
+                        type="number"
                         name="questions"
+                        min={0}
                         placeholder="몇 문제 인가요?"
                         value={questions}
                         onChange={(e) => setQuestions(e.target.value)}

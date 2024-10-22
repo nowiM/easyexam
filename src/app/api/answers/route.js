@@ -1,42 +1,55 @@
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server'; 
 import connectDB from '../../db'; // MongoDB 연결
-import Answer from '../../models/Anwser'; // 모델
+import AnswerList from '../../models/AnwserList'; // 모델
 
 export const GET = async () => {
-    await connectDB()
-    const answers = await Answer.find();
-    return NextResponse.json(answers);
-}
+    await connectDB();
+    const answerList = await AnswerList.find();
+    return NextResponse.json(answerList);
+};
 
 export const POST = async (request) => {
+    await connectDB();
     try {
-        await connectDB(); // MongoDB 연결
+        const { id, answers } = await request.json();
 
-        // 클라이언트로부터 전송된 데이터 받기
-        const { answers } = await request.json();
-        
-        // answers가 배열인지 확인
-        if (!Array.isArray(answers)) {
-            return NextResponse.json({ error: 'answers should be an array' }, { status: 400 });
+        // id가 존재하면 업데이트, 없으면 새로 생성
+        const updateOptions = { upsert: true, new: true }; // upsert: true -> 없으면 새로 생성, new: true -> 업데이트된 문서 반환
+        const updatedAnswerList = await AnswerList.findOneAndUpdate(
+            { id },  // 조건: 해당 id가 있는지 확인
+            { id, answers }, // 업데이트할 데이터
+            updateOptions  // upsert 옵션 설정
+        );
+
+        return NextResponse.json(updatedAnswerList, { status: 201 });
+    } catch (error) {
+        console.error('AnswerList UpDate error:', error);
+        return NextResponse.json({ error: 'Failed to save or update answers' }, { status: 500 });
+    }
+};
+
+export const DELETE = async (request) => {
+    try {
+        await connectDB();
+
+        // 쿼리 파라미터에서 id를 추출
+        const { searchParams } = new URL(request.url);
+        const id = searchParams.get('id');
+
+        if (!id) {
+            return NextResponse.json({ error: 'Missing id' }, { status: 400 });
         }
 
-        // 새로운 답안 문서 생성 및 저장
-        const newAnswer = new Answer({
-            answers: [
-                {
-                    question: answers[0].question,
-                    answer: answers[0].answer,
-                }
-            ]
-        });
-        const savedAnswer = await newAnswer.save();
-        
-        const realAnswers = await Answer.find();
-        console.log(realAnswers[realAnswers.length - 1].answer);
-        // 저장된 데이터를 JSON으로 응답
-        return NextResponse.json(savedAnswer, { status: 201 });
+        // 해당 id를 가진 문서 삭제
+        const deletedAnswerList = await AnswerList.findOneAndDelete({ id });
+        console.log(deletedAnswerList);
+        if (!deletedAnswerList) {
+            return NextResponse.json({ error: 'No data found for the given id' }, { status: 404 });
+        }
+
+        return NextResponse.json({ message: 'Answer list deleted successfully' }, { status: 200 });
     } catch (error) {
-        console.error('Error saving answer:', error);
-        return NextResponse.json({ error: 'Failed to save answer' }, { status: 500 });
+        console.error('AnswerList Delete error:', error);
+        return NextResponse.json({ error: 'Failed to delete answer list' }, { status: 500 });
     }
 };

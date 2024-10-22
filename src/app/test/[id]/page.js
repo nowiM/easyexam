@@ -7,6 +7,7 @@ const TestPage = ({ params }) => {
     const [topice, setTopice] = useState(null);
     const [answers, setAnswers] = useState([]);
     const router = useRouter();
+    const id = Number(params.id); // 동적 라우팅의 [id]를 Number 타입으로 저장(데이터베이스에 저장된 id과 비교하기 위해)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -14,23 +15,20 @@ const TestPage = ({ params }) => {
             if (response.ok) {
                 const data = await response.json();
                 setTopice(data);
-
-                // 로컬 스토리지에서 저장된 답안 데이터 복원
-                const savedAnswers = localStorage.getItem(`answers-${params.id}`);
-                if (savedAnswers) {
-                    setAnswers(JSON.parse(savedAnswers));
-                } else {
-                    setAnswers(Array.from({ length: data.questions }, () => ({ question: '', answer: '' })));
-                }
             } else {
                 console.error('Failed to fetch topic');
                 router.push('/'); // 데이터를 찾지 못하면 홈으로 이동
             }
+            
+            // 데이터베이스에서 저장된 답안 데이터 복원
+            const answerListResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/answers`);
+            const answerListData = await answerListResponse.json();
+            const currentPageData = answerListData.find(data => data.id === id); // 데이터베이스 데이터 중 현재 페이지 필요한 데이터 추출
 
-            const answerSresponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/answers`);
-            const data = await answerSresponse.json();
-
-            console.log(data);
+            // 데이터가 존재하고 currentPageData.id와 id가 같으면 setAnswer값을 저장
+            if(currentPageData && currentPageData.id === id) {
+                setAnswers(currentPageData.answers);
+            }
         };
 
         fetchData();
@@ -39,14 +37,14 @@ const TestPage = ({ params }) => {
     // 입력값 변경 처리 함수
     const handleInputChange = (index, field, value) => {
         setAnswers(prevAnswers => {
-            const updatedAnswers = [...prevAnswers];
-            updatedAnswers[index] = {
-                ...updatedAnswers[index],
+            const updateAnswers = [...prevAnswers];
+            updateAnswers[index] = {
+                ...updateAnswers[index],
                 [field]: value,
-            };
+            }
 
-            return updatedAnswers;
-        });
+            return updateAnswers;
+        })
     };
 
     const handleSubmit = async (e) => {
@@ -56,14 +54,13 @@ const TestPage = ({ params }) => {
         console.log("제출된 답안:", answers);
     
         try {
-            console.log(answers);
             // 서버로 POST 요청
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/answers`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ answers }),
+                body: JSON.stringify({ id, answers }),
             });
     
             if (response.ok) {
