@@ -1,5 +1,41 @@
-/* * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-} */
+}
+
+.mainPageCotainer {
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+.mainPageCotainer .mainPage {
+    font-size: 218px;
+    text-decoration-line: none; /* 링크의 밑줄 제거 */
+    color: inherit; /* 링크의 색상 제거 */
+}
+
+.topiceList {
+    display: flex;
+    list-style: none;
+}
+
+.topiceList .topice {
+    margin-right: 30px;
+}
+
+.topiceList .topice .topicLink {
+    text-decoration-line: none; /* 링크의 밑줄 제거 */
+    color: inherit; /* 링크의 색상 제거 */
+}
+
+
+.topiceList .topice .topicLink .imgAndTitle {
+    display: flex;
+    flex-direction: column;
+}
+
+.topiceList .topice .topicLink .imgAndTitle .folder {
+    width: 200px;
+    height: 200px
+}

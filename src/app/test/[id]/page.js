@@ -5,36 +5,62 @@ import { useRouter } from 'next/navigation';
 
 const TestPage = ({ params }) => {
     const [topice, setTopice] = useState(null);
-    const [answers, setAnswers] = useState([]);
+    const [answers, setAnswers] = useState([]); // 각 문항의 정답 상태도 포함
     const router = useRouter();
-    const id = Number(params.id); // 동적 라우팅의 [id]를 Number 타입으로 저장(데이터베이스에 저장된 id과 비교하기 위해)
+    const id = Number(params.id);
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(process.env.NEXT_PUBLIC_API_URL + `api/topices/${params.id}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/topices/${params.id}`);
             if (response.ok) {
                 const data = await response.json();
                 setTopice(data);
             } else {
                 console.error('Failed to fetch topic');
-                router.push('/'); // 데이터를 찾지 못하면 홈으로 이동
+                router.push('/');
             }
-            
-            // 데이터베이스에서 저장된 답안 데이터 복원
-            const answerListResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/answers`);
-            const answerListData = await answerListResponse.json();
-            const currentPageData = answerListData.find(data => data.id === id); // 데이터베이스 데이터 중 현재 페이지 필요한 데이터 추출
 
-            // 데이터가 존재하고 currentPageData.id와 id가 같으면 setAnswer값을 저장
-            if(currentPageData && currentPageData.id === id) {
-                setAnswers(currentPageData.answers);
+            const answerListResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/answers`);
+            if(answerListResponse.ok) {
+                const answerListData = await answerListResponse.json();
+                const currentPageData = answerListData.find(data => data.id === id);
+                if(currentPageData && currentPageData.id === id) {
+                    setAnswers(currentPageData.answers);
+                }
+            } else {
+                console.error('Failed to fetch answers');
             }
         };
 
         fetchData();
     }, [params.id, router]);
 
-    // 입력값 변경 처리 함수
+    // 정답과 오답을 카운트하는 변수
+    const scoreO = answers.filter(answer => answer.correct === 'O').length;
+    const scoreX = answers.filter(answer => answer.correct === 'X').length;
+    const notCheck = answers.map((answer, index) => !answer.correct ? index + 1 : null).filter(index => index !== null);
+
+    const calc = () => {
+        const sum = scoreO + scoreX;
+        if(sum < topice.questions) {
+            alert(`체크하지 않은 문항이 있습니다. 체크하지 않은 문제의 개수 ${notCheck}`);
+        } else {
+            alert(`${topice.questions} 문제 중에 정답 : ${scoreO} 오답 : ${scoreX}`);
+        }
+    }
+
+    const scoreCalc = (index, value) => {
+        // 클릭한 문항의 정답/오답 상태를 업데이트
+        setAnswers(prevAnswers => {
+            const updateAnswers = [...prevAnswers];
+            updateAnswers[index] = {
+                ...updateAnswers[index],
+                correct: value, // O 또는 X 값으로 상태를 업데이트
+            };
+            return updateAnswers;
+        });
+    };
+
     const handleInputChange = (index, field, value) => {
         setAnswers(prevAnswers => {
             const updateAnswers = [...prevAnswers];
@@ -42,19 +68,14 @@ const TestPage = ({ params }) => {
                 ...updateAnswers[index],
                 [field]: value,
             }
-
             return updateAnswers;
-        })
+        });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
     
-        // 제출된 답안 출력
-        console.log("제출된 답안:", answers);
-    
         try {
-            // 서버로 POST 요청
             const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/answers`, {
                 method: 'POST',
                 headers: {
@@ -120,6 +141,24 @@ const TestPage = ({ params }) => {
                             }}
                         />
                     </p>
+                    <div>
+                        <button 
+                            type='button' 
+                            onClick={() => scoreCalc(i, 'O')} 
+                            style={{ backgroundColor: answers[i]?.correct === 'O' ? 'green' : 'initial' }}
+                            value='O'
+                        >
+                            O
+                        </button>
+                        <button 
+                            type='button' 
+                            onClick={() => scoreCalc(i, 'X')} 
+                            style={{ backgroundColor: answers[i]?.correct === 'X' ? 'red' : 'initial' }}
+                            value='X'
+                        >
+                            X
+                        </button>
+                    </div>
                 </div>
             );
         }
@@ -133,6 +172,7 @@ const TestPage = ({ params }) => {
                     <form onSubmit={handleSubmit}>
                         {questions}
                         <button type="submit" style={{ padding: '10px 20px', marginTop: '20px' }}>제출</button>
+                        <button type="button" onClick={calc}>계산하기</button>
                     </form>
                 </>
             ) : (

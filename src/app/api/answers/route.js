@@ -1,6 +1,7 @@
+// app/api/answers/route.js
 import { NextResponse } from 'next/server'; 
-import connectDB from '../../db'; // MongoDB 연결
-import AnswerList from '../../models/AnwserList'; // 모델
+import connectDB from '../../db/connect'; // MongoDB 연결
+import AnswerList from '../../db/models/AnwserList'; // 모델
 
 export const GET = async () => {
     await connectDB();

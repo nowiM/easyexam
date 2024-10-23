@@ -8,19 +8,30 @@ export const metadata = {
 };
 
 const RootLayout = async ({ children }) => {
-  const response = await fetch(process.env.NEXT_PUBLIC_API_URL + 'api/topices', { cache: 'no-store' });
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/topices`, { cache: 'no-store' });
   const topices = await response.json();
 
   return (
     <html>
       <body>
-        <Link href='/'>Welcome</Link>
+        <div className="mainPageCotainer">
+          <Link href='/' className='mainPage'>Wel:come</Link>
+        </div>
         
-        <ol>
+        <ul className='topiceList'>
           {
-            topices.map(topice => <li key={topice.id}><Link href={`/test/${topice.id}`}>{topice.title}</Link></li>)
+            topices.map(topice => (
+              <li key={topice.id} className='topice'>
+                  <Link className='topicLink' href={`/test/${topice.id}`}>
+                    <div className="imgAndTitle">
+                        <img className='folder' src="/images/folder.svg" alt="" srcset="" />
+                        <span>{topice.title}</span>
+                    </div>
+                  </Link>
+              </li>
+            ))
           }
-        </ol>
+        </ul>
         
         <Control />
 

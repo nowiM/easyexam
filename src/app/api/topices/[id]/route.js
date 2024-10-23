@@ -1,7 +1,7 @@
 // app/api/topices/[id]/route.js
 import { NextResponse } from 'next/server';
-import connectDB from '../../../db'; // MongoDB 연결
-import Topice from '../../../models/Topice'; // Mongoose 모델
+import connectDB from '../../../db/connect'; // MongoDB 연결
+import Topice from '../../../db/models/Topice'; // Mongoose 모델
 
 // GET 요청: 특정 id의 데이터를 조회
 export const GET = async (request, { params }) => {

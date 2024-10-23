@@ -1,7 +1,7 @@
 // app/api/topices/route.js
 import { NextResponse } from 'next/server';
-import Topice from '../../models/Topice';
-import connectDB from '../../db';
+import Topice from '../../db/models/Topice';
+import connectDB from '../../db/connect';
 
 export const GET = async () => {
     await connectDB();

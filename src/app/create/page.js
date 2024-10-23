@@ -15,7 +15,7 @@ const Create = () => {
         const data = await fristResponse.json();
         const id = data.length === 0 ? 1 : data[data.length - 1].id + 1
 
-        const response = await fetch('/api/topices', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/topices`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id, title, questions })
