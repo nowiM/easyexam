@@ -33,21 +33,29 @@ const Control = () => {
     }
 
     return (
-        <ul>
-            <li><Link href="/create">Create</Link></li>
-            {id ? 
-                <>
-                    <li>
-                        <input 
-                            type="button"
-                            value='delete'
-                            onClick={handleDelete}
-                        />
-                    </li>
-                </>
-            : null}
-        </ul>
-    );
-}
+        <>
+        <div className="createAndDelete">
+            <div className="copy">Good Times is a practice that provides creative services and digital experiences for commercial and cultural clients to build meaningful brands</div>
+            <ul className='controlList'>
+                <li>
+                    <Link href="/create">
+                        <img className='controlImg' src="/images/create.svg" alt="" />
+                        <span className='controlTitle'>Create</span>
+                    </Link>
+                </li>
+                {id ? 
+                    <>
+                        <li>
+                            <button onClick={handleDelete}>
+                                <img className='controlImg' src="/images/delete.svg" alt="Delete" />
+                                <span className='controlTitle'>Delete</span>
+                            </button>
+                        </li>
+                    </>
+                : null}
+            </ul>
+        </div>
+        </>
+    );}
 
 export default Control;

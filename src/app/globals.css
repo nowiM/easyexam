@@ -4,38 +4,267 @@
     box-sizing: border-box;
 }
 
+body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 1200px;
+}
+
 .mainPageCotainer {
-    padding: 10px;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
     border-bottom: 1px solid black;
 }
 
 .mainPageCotainer .mainPage {
-    font-size: 218px;
+    font-size: 235px;
     text-decoration-line: none; /* 링크의 밑줄 제거 */
     color: inherit; /* 링크의 색상 제거 */
 }
 
-.topiceList {
+.container .createAndDelete {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.container .createAndDelete .copy {
+    width: 612px;
+}
+
+.container .createAndDelete .controlList {
     display: flex;
     list-style: none;
+    font-size: 16px;
 }
 
-.topiceList .topice {
-    margin-right: 30px;
+.container .createAndDelete .controlList li a,
+.container .createAndDelete .controlList li button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.topiceList .topice .topicLink {
+.container .createAndDelete .controlList li a:hover,
+.container .createAndDelete .controlList li button:hover {
+    background-color: #f5f5f7;
+} 
+
+.container .createAndDelete .controlList li a {
+    text-decoration-line: none;
+    color: inherit;
+}
+
+.container .createAndDelete .controlList li button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.controlImg {
+    width: 30px;
+    height: 30px;
+}
+
+.controlTitle {
+    margin-left: 15px;
+}
+
+.topiceContainer {
+    width: 100%;
+}
+
+.topiceContainer .topiceList {
+    display: flex;
+    flex-wrap: wrap; /* flex 아이템들이 넘칠 경우 줄바꿈 */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.topiceContainer .topiceList .topice {
+    width: 240px; /* 기본 width 설정 */
+}
+
+.topiceContainer .topiceList .topice .topicLink {
     text-decoration-line: none; /* 링크의 밑줄 제거 */
     color: inherit; /* 링크의 색상 제거 */
 }
 
-
-.topiceList .topice .topicLink .imgAndTitle {
+.topiceContainer .topiceList .topice .topicLink .imgAndTitle {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 30px;
+    border-radius: 12px;
 }
 
-.topiceList .topice .topicLink .imgAndTitle .folder {
+.topiceContainer .topiceList .topice .topicLink .imgAndTitle:hover {
+    background-color: #f5f5f7;
+}
+
+.topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
     width: 200px;
     height: 200px
 }
+
+.topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
+    font-size: 15px;
+}
+
+/* crate 페이지 CSS */
+.createForm {
+    width: 400px;
+    height: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 배치 */
+    justify-content: center; /* 수직 가운데 정렬 */
+    align-items: center; /* 수평 가운데 정렬 */
+}
+
+.createForm form {
+    width: 90%;
+}
+
+.createForm h2 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.createForm p {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+.createForm input[type="text"],
+.createForm input[type="number"],
+.createForm input[type="submit"] {
+    width: 100%; /* 입력 필드의 너비를 100%로 유지 */
+    max-width: 100%; /* max-width로 고정 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.createForm input[type="submit"] {
+    background-color: #F2E70C;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.createForm input[type="submit"]:hover {
+    background-color: #FFF80B;
+}
+
+
+
+
+@media (max-width: 1200px) {
+    .container {
+        max-width: 990px;
+    }
+    .mainPageCotainer .mainPage {
+        font-size: 200px;
+    }
+    .topiceContainer .topiceList .topice {
+        width: 198px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width: 990px) {
+    .container {
+        max-width: 770px;
+    }
+
+    .container .mainPageCotainer .mainPage {
+        font-size: 175px;
+    }
+    .topiceContainer .topiceList .topice {
+        width: 192.5px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media (max-width: 770px) {
+    .container {
+        width: 100vw;
+    }
+
+    .mainPageCotainer .mainPage.behind {
+        font-size: 22vw; 
+    }
+    
+    .container .createAndDelete .copy {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .container .createAndDelete .controlList {
+        font-size: 12px;
+    }
+
+    .controlImg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .controlTitle {
+        margin-left: 15px;
+    }
+
+    .topiceContainer .topiceList .topice {
+        width: 24vw;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
+        width: 100%;
+        height: 100%;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
+        font-size: 1.5vw;
+    }
+}
+
+@media (max-width: 540px) {
+    .container .createAndDelete {
+        flex-direction: column;
+    }
+    .createForm {
+        width: 100%;
+        border: none;
+        margin: 0 auto;
+        box-shadow: none;
+    }
+}
+
+

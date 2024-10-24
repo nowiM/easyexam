@@ -32,30 +32,33 @@ const Create = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <p>
-                    <input
-                        type="text"
-                        name="title"
-                        placeholder="title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+            <div className="createForm">
+                <h2>시험과목 생성</h2>
+                <form onSubmit={handleSubmit}>
+                    <p>
+                        <input
+                            type="text"
+                            name="title"
+                            placeholder="시험 과목을 입력해주세요"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            />
+                    </p>
+                    <p>
+                        <input
+                            type="number"
+                            name="questions"
+                            min={0}
+                            placeholder="몇 문제 인가요?"
+                            value={questions}
+                            onChange={(e) => setQuestions(e.target.value)}
                         />
-                </p>
-                <p>
-                    <input
-                        type="number"
-                        name="questions"
-                        min={0}
-                        placeholder="몇 문제 인가요?"
-                        value={questions}
-                        onChange={(e) => setQuestions(e.target.value)}
-                    />
-                </p>
-                <p>
-                    <input type="submit" value="create" />
-                </p>
-            </form>
+                    </p>
+                    <p>
+                        <input type="submit" value="create" />
+                    </p>
+                </form>
+            </div>
         </>
     );
 };
