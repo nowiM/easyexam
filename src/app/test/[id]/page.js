@@ -101,35 +101,25 @@ const TestPage = ({ params }) => {
             questions.push(
                 <div 
                     key={i}
-                    className='question' 
-                    style={{
-                        padding: '10px',
-                        border: '1px solid #ccc',
-                        marginBottom: '10px',
-                        backgroundColor: '#f9f9f9'
-                    }}
+                    className={`question ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
                 >
                     <h3>문항 {i + 1}</h3>
                     <p>
                         <label>시험 문제:</label>
-                        <input 
+                        <textarea 
                             type="text" 
+                            className={`questionField ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
                             name={`question-${i}`} 
                             placeholder='시험 문제 입력'
                             value={answers[i]?.question || ''}
                             onChange={(e) => handleInputChange(i, 'question', e.target.value)}
-                            style={{
-                                width: '100%',
-                                padding: '8px',
-                                marginTop: '5px',
-                                marginBottom: '10px'
-                            }}
                         />
                     </p>
                     <p>
                         <label>답안:</label>
-                        <input 
-                            type="text" 
+                        <textarea 
+                            type="text"
+                            className={`answerField ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
                             name={`answer-${i}`} 
                             placeholder='답안 입력'
                             value={answers[i]?.answer || ''}
@@ -141,19 +131,19 @@ const TestPage = ({ params }) => {
                             }}
                         />
                     </p>
-                    <div>
+                    <div className='correctBtn'>
                         <button 
+                            className={`correct ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
                             type='button' 
                             onClick={() => scoreCalc(i, 'O')} 
-                            style={{ backgroundColor: answers[i]?.correct === 'O' ? 'green' : 'initial' }}
                             value='O'
                         >
                             O
                         </button>
-                        <button 
+                        <button
+                            className={`rong ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
                             type='button' 
                             onClick={() => scoreCalc(i, 'X')} 
-                            style={{ backgroundColor: answers[i]?.correct === 'X' ? 'red' : 'initial' }}
                             value='X'
                         >
                             X
@@ -165,7 +155,7 @@ const TestPage = ({ params }) => {
     }
 
     return (
-        <div>
+        <div className='testContainer'>
             {topice ? (
                 <>
                     <h2>{topice.title}</h2>
