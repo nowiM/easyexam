@@ -35,7 +35,7 @@ const Control = () => {
     return (
         <>
         <div className="createAndDelete">
-            <div className="copy">Good Times is a practice that provides creative services and digital experiences for commercial and cultural clients to build meaningful brands</div>
+            <div className="copy"><strong>시험 복원과 의견 공유를 한 곳에서</strong> 국가 자격증 시험 답안을 빠르게 확인하고 실시간으로 의견을 나눌 수 있습니다. </div>
             <ul className='controlList'>
                 <li>
                     <Link href="/create">

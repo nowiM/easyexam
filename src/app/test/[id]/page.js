@@ -103,7 +103,7 @@ const TestPage = ({ params }) => {
                     key={i}
                     className={`question ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
                 >
-                    <h3>문항 {i + 1}</h3>
+                    <h3 className='askNum'>문항 {i + 1}</h3>
                     <p>
                         <label>시험 문제:</label>
                         <textarea 
@@ -124,11 +124,6 @@ const TestPage = ({ params }) => {
                             placeholder='답안 입력'
                             value={answers[i]?.answer || ''}
                             onChange={(e) => handleInputChange(i, 'answer', e.target.value)}
-                            style={{
-                                width: '100%',
-                                padding: '8px',
-                                marginTop: '5px'
-                            }}
                         />
                     </p>
                     <div className='correctBtn'>
@@ -161,8 +156,10 @@ const TestPage = ({ params }) => {
                     <h2>{topice.title}</h2>
                     <form onSubmit={handleSubmit}>
                         {questions}
-                        <button type="submit" style={{ padding: '10px 20px', marginTop: '20px' }}>제출</button>
-                        <button type="button" onClick={calc}>계산하기</button>
+                        <div className="buttonContainer">
+                            <button className='submitBtn' type="submit">제출</button>
+                            <button className='calcBtn' type="button" onClick={calc}>계산</button>
+                        </div>
                     </form>
                 </>
             ) : (

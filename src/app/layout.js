@@ -12,7 +12,7 @@ const RootLayout = ({ children }) => {
       <body>
         <div className="container">
           <div className="mainPageCotainer">
-            <Link href='/' className='mainPage behind'>Wel:come</Link>
+            <Link href='/' className='mainPage behind'>Easy:Exam</Link>
           </div>
           
           <Control />
