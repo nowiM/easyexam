@@ -18,8 +18,12 @@ const RootLayout = ({ children }) => {
           <Control />
 
           {children}
-        </div>
 
+          <div className="footer">
+            <span>© 2024 Easy:Exam All right reserved contact : iimerty35@gmail.com</span>
+            <span>© Icons by Icons8</span>
+          </div>
+        </div>
       </body>
     </html>
   );

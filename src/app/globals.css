@@ -195,33 +195,6 @@ body {
     gap: 20px;
 }
 
-.buttonContainer {
-    position: fixed;
-    display: flex;
-    bottom: 30px;
-    right: 30px;
-}
-
-.buttonContainer .submitBtn,
-.buttonContainer .calcBtn  {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #F5F5F7;
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px #dadcdf, 0 4px 8px 0 rgba(0, 0, 0, .1);
-    cursor: pointer;
-    background-color: white;
-}
-
-.buttonContainer .submitBtn:hover,
-.buttonContainer .calcBtn:hover {
-    background-color: #f1f1f1;
-}
-
-.buttonContainer .calcBtn {
-    margin-left: 12px;
-}
-
 .container .testContainer form .question {
     width: 400px;
     padding: 20px;
@@ -314,6 +287,40 @@ body {
 .container .testContainer form .question .correctBtn .rong:hover {
     color: white;
     background-color: #fc7575;
+}
+
+.container .testContainer form .buttonContainer {
+    position: fixed;
+    display: flex;
+    bottom: 30px;
+    right: 30px;
+}
+
+.container .testContainer form .buttonContainer .submitBtn,
+.container .testContainer form .buttonContainer .calcBtn  {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #F5F5F7;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px #dadcdf, 0 4px 8px 0 rgba(0, 0, 0, .1);
+    cursor: pointer;
+    background-color: white;
+}
+
+.container .testContainer form .buttonContainer .submitBtn:hover,
+.container .testContainer form .buttonContainer .calcBtn:hover {
+    background-color: #f1f1f1;
+}
+
+.container .testContainer form .buttonContainer .calcBtn {
+    margin-left: 12px;
+}
+
+.container .footer {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    margin-top: 12px;
 }
 
 @media (max-width: 1200px) {
