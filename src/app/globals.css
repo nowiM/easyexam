@@ -317,10 +317,10 @@ body {
 }
 
 .container .footer {
-    display: flex;
-    justify-content: center;
+    text-align: center;
     padding: 12px;
     margin-top: 12px;
+    font-size: 13px;
 }
 
 @media (max-width: 1200px) {

@@ -2,7 +2,6 @@
 import Link from  'next/link';
 
 const Home = async () => {
-  console.log(`${process.env.NEXT_PUBLIC_API_URL}api/topices`);
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/topices`, { cache: 'no-store' });
   const topices = await response.json();
   return (
