@@ -12,15 +12,16 @@ const RootLayout = ({ children }) => {
       <body>
         <div className="container">
           <div className="mainPageCotainer">
-            <Link href='/' className='mainPage behind'>Easy:Exam</Link>
+            <Link href='/' className='mainPage behind'>Easy<span className='emphasis'>:</span>Exam</Link>
           </div>
-          
           <Control />
 
           {children}
 
           <div className="footer">
-            © 2024 Easy:Exam All right reserved contact : iimerty35@gmail.com © Icons by Icons8
+            <span className='footer-item'>© 2024 Easy:Exam All right reserved</span>
+            <span className='footer-item'>✉️ contact : iimerty35@gmail.com</span>
+            <span className='footer-item'>© Icons by Icons8</span>
           </div>
         </div>
       </body>

@@ -157,8 +157,8 @@ const TestPage = ({ params }) => {
                     <form onSubmit={handleSubmit}>
                         {questions}
                         <div className="buttonContainer">
-                            <button className='submitBtn' type="submit">제출</button>
                             <button className='calcBtn' type="button" onClick={calc}>계산</button>
+                            <button className='submitBtn' type="submit">제출</button>
                         </div>
                     </form>
                 </>

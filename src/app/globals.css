@@ -12,19 +12,27 @@ body {
 
 .container {
     max-width: 1200px;
+    min-height: 100vh; /* 화면 높이를 채우도록 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.mainPageCotainer {
+.container .mainPageCotainer {
     width: 100%;
     text-align: center;
     padding-bottom: 10px;
     border-bottom: 1px solid black;
 }
 
-.mainPageCotainer .mainPage {
+.container .mainPageCotainer .mainPage {
     font-size: 265px;
     text-decoration-line: none; /* 링크의 밑줄 제거 */
     color: inherit; /* 링크의 색상 제거 */
+}
+
+.container .mainPageCotainer .mainPage .emphasis {
+    color: #A0A0A0;
 }
 
 .container .createAndDelete {
@@ -193,6 +201,7 @@ body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
+    padding-bottom: 40px;
 }
 
 .container .testContainer form .question {
@@ -234,8 +243,10 @@ body {
 
 .container .testContainer form .question .answerField {
     width: 100%;
+    height: auto;
     padding: 8px;
     border-radius: 12px;
+    margin-top: 5px;
     resize: vertical; /* 세로 방향으로만 크기 조절 가능하게 설정 */
 }
 
@@ -256,11 +267,12 @@ body {
 
 .container .testContainer form .question .correctBtn button {
     width: 50%;
-    cursor: pointer;
+    color: black;
     background-color: white;
     padding: 20px;
     border: none;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .container .testContainer form .question .correctBtn .correct.green {
@@ -304,6 +316,7 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 0 1px #dadcdf, 0 4px 8px 0 rgba(0, 0, 0, .1);
     cursor: pointer;
+    color: black;
     background-color: white;
 }
 
@@ -313,21 +326,25 @@ body {
 }
 
 .container .testContainer form .buttonContainer .calcBtn {
-    margin-left: 12px;
+    margin-right: 12px;
 }
 
 .container .footer {
     text-align: center;
     padding: 12px;
-    margin-top: 12px;
+    margin-top: auto;
     font-size: 13px;
+}
+
+.container .footer .footer-item {
+    display: block;
 }
 
 @media (max-width: 1200px) {
     .container {
         max-width: 990px;
     }
-    .mainPageCotainer .mainPage {
+    .container .mainPageCotainer .mainPage {
         font-size: 219px;
     }
     .topiceContainer .topiceList .topice {
@@ -386,7 +403,7 @@ body {
     }
 
     .topiceContainer .topiceList .topice {
-        width: 24vw;
+        width: 25vw;
     }
 
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
@@ -395,7 +412,7 @@ body {
     }
 
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
-        font-size: 1.5vw;
+        font-size: 1.8vw;
     }
 }
 
@@ -403,6 +420,7 @@ body {
     .container .createAndDelete {
         flex-direction: column;
     }
+
     .createForm {
         width: 100%;
         border: none;
@@ -410,17 +428,18 @@ body {
         box-shadow: none;
     }
 
-    .buttonContainer {
-        position: static;
-        width: 400px;
+    .container .testContainer form .question {
+        width: 100%;
+        border-radius: 0;
     }
 
-    .buttonContainer .submitBtn,
+    .buttonContainer {
+        flex-direction: column;
+        right: 10px !important;
+    }
+
     .buttonContainer .calcBtn {
-        width: 50%;
-        border-radius: 12px;
-        margin-bottom: 20px;
+        margin-right: 0 !important;
+        margin-bottom: 12px !important;
     }
 }
-
-
