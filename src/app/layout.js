@@ -1,6 +1,6 @@
 // app/layout/js
 import Link from 'next/link'
-import Control from './Control';
+import Control from './components/Control';
 import "./globals.css";
 
 const RootLayout = ({ children }) => {

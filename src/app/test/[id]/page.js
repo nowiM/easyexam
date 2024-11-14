@@ -2,10 +2,13 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Modal from '../../components/Modal';
 
 const TestPage = ({ params }) => {
     const [topice, setTopice] = useState(null);
-    const [answers, setAnswers] = useState([]); // 각 문항의 정답 상태도 포함
+    const [answers, setAnswers] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
     const router = useRouter();
     const id = Number(params.id);
 
@@ -35,27 +38,32 @@ const TestPage = ({ params }) => {
         fetchData();
     }, [params.id, router]);
 
-    // 정답과 오답을 카운트하는 변수
     const scoreO = answers.filter(answer => answer.correct === 'O').length;
     const scoreX = answers.filter(answer => answer.correct === 'X').length;
     const notCheck = answers.map((answer, index) => !answer.correct ? index + 1 : null).filter(index => index !== null);
 
     const calc = () => {
         const sum = scoreO + scoreX;
-        if(sum < topice.questions) {
-            alert(`체크하지 않은 문항이 있습니다. 체크하지 않은 문제의 개수 ${notCheck}`);
+        if(sum === 0) {
+            setModalMessage('한 문제도 체크하지 않았습니다. 정답을 체크해주세요.')
+        } else if (sum < topice.questions) {
+            setModalMessage(`체크하지 않은 문항이 있습니다. 체크하지 않은 문제의 개수: ${notCheck}`);
         } else {
-            alert(`${topice.questions} 문제 중에 정답 : ${scoreO} 오답 : ${scoreX}`);
+            setModalMessage(`${topice.questions} 문제 중에 정답: ${scoreO} 오답: ${scoreX}`);
         }
-    }
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
 
     const scoreCalc = (index, value) => {
-        // 클릭한 문항의 정답/오답 상태를 업데이트
         setAnswers(prevAnswers => {
             const updateAnswers = [...prevAnswers];
             updateAnswers[index] = {
                 ...updateAnswers[index],
-                correct: value, // O 또는 X 값으로 상태를 업데이트
+                correct: value,
             };
             return updateAnswers;
         });
@@ -161,6 +169,7 @@ const TestPage = ({ params }) => {
                             <button className='submitBtn' type="submit">제출</button>
                         </div>
                     </form>
+                    {isModalOpen && <Modal message={modalMessage} onClose={closeModal} />}
                 </>
             ) : (
                 <p>Loading...</p>
