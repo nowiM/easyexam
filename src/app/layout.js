@@ -14,6 +14,7 @@ const RootLayout = ({ children }) => {
           <div className="mainPageCotainer">
             <Link href='/' className='mainPage behind'>Easy<span className='emphasis'>:</span>Exam</Link>
           </div>
+          
           <Control />
 
           {children}

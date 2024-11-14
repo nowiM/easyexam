@@ -83,6 +83,8 @@ body {
 }
 
 .controlTitle {
+    color: black;
+    font-weight: 0;
     margin-left: 15px;
 }
 
@@ -243,11 +245,17 @@ body {
 
 .container .testContainer form .question .answerField {
     width: 100%;
-    height: auto;
+    height: 100px;
     padding: 8px;
     border-radius: 12px;
     margin-top: 5px;
     resize: vertical; /* 세로 방향으로만 크기 조절 가능하게 설정 */
+    overflow-y: scroll; /* 스크롤 기능은 유지 */
+    scrollbar-width: none; /* Firefox에서 스크롤바 숨김 */
+}
+
+textarea::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge에서 스크롤바 숨김 */
 }
 
 .container .testContainer form .question .answerField.green {
@@ -268,6 +276,7 @@ body {
 .container .testContainer form .question .correctBtn button {
     width: 50%;
     color: black;
+    font-weight: 600;
     background-color: white;
     padding: 20px;
     border: none;
@@ -315,9 +324,10 @@ body {
     border: 1px solid #F5F5F7;
     border-radius: 50%;
     box-shadow: 0 0 0 1px #dadcdf, 0 4px 8px 0 rgba(0, 0, 0, .1);
-    cursor: pointer;
     color: black;
+    font-weight: 0;
     background-color: white;
+    cursor: pointer;
 }
 
 .container .testContainer form .buttonContainer .submitBtn:hover,
@@ -402,17 +412,22 @@ body {
         margin-left: 15px;
     }
 
+    
     .topiceContainer .topiceList .topice {
         width: 25vw;
     }
-
+    
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
         width: 100%;
         height: 100%;
     }
-
+    
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
         font-size: 1.8vw;
+    }
+
+    .container .testContainer {
+        border-radius: 0;
     }
 }
 
@@ -427,7 +442,7 @@ body {
         margin: 0 auto;
         box-shadow: none;
     }
-
+    
     .container .testContainer form .question {
         width: 100%;
         border-radius: 0;

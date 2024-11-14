@@ -39,7 +39,7 @@ const Control = () => {
             <ul className='controlList'>
                 <li>
                     <Link href="/create">
-                        <img className='controlImg' src="/images/create.svg" alt="" />
+                        <img className='controlImg' src="/images/create.svg" alt="createBtn" />
                         <span className='controlTitle'>Create</span>
                     </Link>
                 </li>
@@ -47,7 +47,7 @@ const Control = () => {
                     <>
                         <li>
                             <button onClick={handleDelete}>
-                                <img className='controlImg' src="/images/delete.svg" alt="Delete" />
+                                <img className='controlImg' src="/images/delete.svg" alt="DeleteBtn" />
                                 <span className='controlTitle'>Delete</span>
                             </button>
                         </li>

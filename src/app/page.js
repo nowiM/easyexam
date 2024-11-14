@@ -13,7 +13,7 @@ const Home = async () => {
               <li key={topice.id} className='topice'>
                   <Link className='topicLink' href={`/test/${topice.id}`}>
                     <div className="imgAndTitle">
-                        <img className='folder' src="/images/folder.svg" alt="" srcSet="" />
+                        <img className='folder' src="/images/folder.svg" alt="folderImg" />
                         <span className='topiceTitle'>{topice.title}</span>
                     </div>
                   </Link>
