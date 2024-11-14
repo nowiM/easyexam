@@ -1,5 +1,5 @@
 // app/page.js
-import Link from  'next/link';
+import Link from 'next/link';
 
 const Home = async () => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/topices`, { cache: 'no-store' });
@@ -11,7 +11,7 @@ const Home = async () => {
           {
             topices.map(topice => (
               <li key={topice.id} className='topice'>
-                  <Link className='topicLink' href={`/test/${topice.id}`}>
+                  <Link className='topicLink' href={`/topice/${topice.id}`}>
                     <div className="imgAndTitle">
                         <img className='folder' src="/images/folder.svg" alt="folderImg" />
                         <span className='topiceTitle'>{topice.title}</span>

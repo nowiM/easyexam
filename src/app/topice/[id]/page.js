@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Modal from '../../components/Modal';
 
-const TestPage = ({ params }) => {
+const TopicePage = ({ params }) => {
     const [topice, setTopice] = useState(null);
     const [answers, setAnswers] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -178,4 +178,4 @@ const TestPage = ({ params }) => {
     );
 };
 
-export default TestPage;
+export default TopicePage;

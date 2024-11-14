@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import { useParams,useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 
 const Control = () => {
     const params = useParams();
@@ -50,6 +50,11 @@ const Control = () => {
                                 <img className='controlImg' src="/images/delete.svg" alt="DeleteBtn" />
                                 <span className='controlTitle'>Delete</span>
                             </button>
+                        </li>
+                        <li>
+                            <Link href={`/update/${id}`}>
+                                Update
+                            </Link>
                         </li>
                     </>
                 : null}

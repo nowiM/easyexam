@@ -44,3 +44,32 @@ export const DELETE = async (request, { params }) => {
         return NextResponse.json({ error: 'Failed to delete topic' }, { status: 500 });
     }
 };
+
+// PUT 요청: 특정 id의 데이터를 업데이트
+export const PUT = async (request, { params }) => {
+    try {
+        await connectDB(); // MongoDB 연결
+        const { id } = params;
+        const { title, question } = await request.json(); // Assume only updating title and question
+        console.log(title, question);
+
+        // Update title and question fields
+        const updatedTopice = await Topice.findOneAndUpdate(
+            { id: parseInt(id) },
+            { title, questions: question }, // Update both title and question fields
+            { new: true } // Option to return the updated document
+        );
+        console.log(updatedTopice);
+        
+        if (!updatedTopice) {
+            return NextResponse.json({ error: 'Item not found' }, { status: 404 });
+        }
+
+        return NextResponse.json(updatedTopice, { status: 200 });
+    } catch (error) {
+        console.error('Error updating topic:', error);
+        return NextResponse.json({ error: 'Failed to update topic' }, { status: 500 });
+    }
+};
+
+
