@@ -85,7 +85,11 @@ body {
 .controlTitle {
     color: black;
     font-size: 16px;
+<<<<<<< HEAD
     font-weight: normal;
+=======
+    font-weight: 0;
+>>>>>>> css-improvements
     margin-left: 12px;
 }
 
@@ -102,7 +106,7 @@ body {
 }
 
 .topiceContainer .topiceList .topice {
-    width: 240px; /* 기본 width 설정 */
+    width: 300px; /* 기본 width 설정 */
 }
 
 .topiceContainer .topiceList .topice .topicLink {
@@ -115,7 +119,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 30px;
+    padding: 0 20px 30px 20px;
     border-radius: 12px;
 }
 
@@ -124,8 +128,8 @@ body {
 }
 
 .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
-    width: 200px;
-    height: 200px
+    width: 240px;
+    height: 240px
 }
 
 .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
@@ -407,13 +411,19 @@ textarea::-webkit-scrollbar {
     .container .mainPageCotainer .mainPage {
         font-size: 219px;
     }
+
     .topiceContainer .topiceList .topice {
-        width: 198px;
+        width: 247.5px;
+        height: 247.5px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
+        padding: 0 17.5px 20px 17.5px;
     }
 
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
-        width: 100%;
-        height: 100%;
+        width: 180px;
+        height: 180px;
     }
 }
 
@@ -425,13 +435,23 @@ textarea::-webkit-scrollbar {
     .container .mainPageCotainer .mainPage {
         font-size: 170px;
     }
+    
     .topiceContainer .topiceList .topice {
-        width: 192.5px;
+        width: 192px;
+        height: 192px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
+        padding: 0 12px 20px 12px;
     }
 
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
-        width: 100%;
-        height: 100%;
+        width: 180px;
+        height: 180px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
+        font-size: 13px;
     }
 }
 
@@ -441,7 +461,7 @@ textarea::-webkit-scrollbar {
     }
 
     .mainPageCotainer .mainPage.behind {
-        font-size: 22vw; 
+        font-size: 21vw; 
     }
     
     .container .createAndDelete .copy {
@@ -458,10 +478,21 @@ textarea::-webkit-scrollbar {
         height: 20px;
     }
     
+<<<<<<< HEAD
+=======
+    .topiceContainer .topiceList {
+        justify-content: center;
+    }
+
+>>>>>>> css-improvements
     .topiceContainer .topiceList .topice {
-        width: 25vw;
+        width: 32vw;
     }
     
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
+        padding: 0 20px 20px 20px;
+    }
+
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
         width: 100%;
         height: 100%;
@@ -491,6 +522,27 @@ textarea::-webkit-scrollbar {
     .container .testContainer form .question {
         width: 100%;
         border-radius: 0;
+    }
+
+    .topiceContainer .topiceList {
+        justify-content: start;
+    }
+
+    .topiceContainer .topiceList .topice {
+        width: 50vw;
+        height: auto;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
+        padding: 0 5px 20px 5px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
+        width: 100%;
+        height: 100%;
+    }
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
+        font-size: 3vw;
     }
 
     .buttonContainer {
