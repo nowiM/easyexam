@@ -1,16 +1,13 @@
 // app/api/answers/route.js
 import { NextResponse } from 'next/server'; 
-import connectDB from '../../db/connect'; // MongoDB 연결
 import AnswerList from '../../db/models/AnwserList'; // 모델
 
 export const GET = async () => {
-    await connectDB();
     const answerList = await AnswerList.find();
     return NextResponse.json(answerList);
 };
 
 export const POST = async (request) => {
-    await connectDB();
     try {
         const { id, answers } = await request.json();
 
@@ -31,8 +28,6 @@ export const POST = async (request) => {
 
 export const DELETE = async (request) => {
     try {
-        await connectDB();
-
         // 쿼리 파라미터에서 id를 추출
         const { searchParams } = new URL(request.url);
         const id = searchParams.get('id');

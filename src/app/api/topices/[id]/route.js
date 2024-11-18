@@ -1,12 +1,10 @@
 // app/api/topices/[id]/route.js
 import { NextResponse } from 'next/server';
-import connectDB from '../../../db/connect'; // MongoDB 연결
 import Topice from '../../../db/models/Topice'; // Mongoose 모델
 
 // GET 요청: 특정 id의 데이터를 조회
 export const GET = async (request, { params }) => {
     try {
-        await connectDB(); // MongoDB 연결
         const { id } = params;
 
         // id로 데이터를 조회
@@ -27,7 +25,6 @@ export const GET = async (request, { params }) => {
 // DELETE 요청: 특정 id의 데이터를 삭제
 export const DELETE = async (request, { params }) => {
     try {
-        await connectDB(); // MongoDB 연결
         const { id } = params;
 
         // id로 데이터를 삭제
@@ -48,7 +45,6 @@ export const DELETE = async (request, { params }) => {
 // PUT 요청: 특정 id의 데이터를 업데이트
 export const PUT = async (request, { params }) => {
     try {
-        await connectDB(); // MongoDB 연결
         const { id } = params;
         const { title, question } = await request.json(); // Assume only updating title and question
         console.log(title, question);
