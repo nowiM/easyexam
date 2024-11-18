@@ -38,16 +38,17 @@ const TopicePage = ({ params }) => {
         fetchData();
     }, [params.id, router]);
 
-    const scoreO = answers.filter(answer => answer.correct === 'O').length;
-    const scoreX = answers.filter(answer => answer.correct === 'X').length;
-    const notCheck = answers.map((answer, index) => !answer.correct ? index + 1 : null).filter(index => index !== null);
-
+    
     const calc = () => {
+        const scoreO = answers.filter(answer => answer.correct === 'O').length;
+        const scoreX = answers.filter(answer => answer.correct === 'X').length;
+        const notCheck = answers.map((answer, index) => !answer.correct ? index + 1 : null).filter(index => index !== null);
+
         const sum = scoreO + scoreX;
         if(sum === 0) {
             setModalMessage('한 문제도 체크하지 않았습니다. 정답을 체크해주세요.')
         } else if (sum < topice.questions) {
-            setModalMessage(`체크하지 않은 문항이 있습니다. 체크하지 않은 문제의 개수: ${notCheck}`);
+            setModalMessage(`체크하지 않은 문항이 있습니다. 체크하지 않은 문제의 개수: ${notCheck.join(', ')}`);
         } else {
             setModalMessage(`${topice.questions} 문제 중에 정답: ${scoreO} 오답: ${scoreX}`);
         }
