@@ -1,5 +1,6 @@
 // app/api/comments/route.js
 import { NextResponse } from 'next/server';
+import connectDB from '../../db/connect'; // MongoDB 연결
 import Comment from '../../db/models/Comment';
 
 // 댓글 목록 조회 (GET)
@@ -8,6 +9,7 @@ export const GET = async (request) => {
     const topiceId = searchParams.get('topiceId');
 
     try {
+        await connectDB();
         const comments = await Comment.find({ topiceId: parseInt(topiceId) }).sort({ createdAt: -1 });
         return NextResponse.json(comments);
     } catch (error) {
@@ -18,6 +20,7 @@ export const GET = async (request) => {
 // 댓글 생성 (POST)
 export const POST = async (request) => {
     try {
+        await connectDB();
         const { topiceId, username, content } = await request.json();
 
         const newComment = new Comment({ topiceId, username, content });
@@ -31,6 +34,7 @@ export const POST = async (request) => {
 // 댓글 수정 (PUT)
 export const PUT = async (request) => {
     try {
+        await connectDB();
         const { id, content } = await request.json();
 
         const updatedComment = await Comment.findByIdAndUpdate(
@@ -50,6 +54,7 @@ export const DELETE = async (request) => {
     const id = searchParams.get('id');
 
     try {
+        await connectDB();
         await Comment.findByIdAndDelete(id);
         return NextResponse.json({ message: 'Comment deleted successfully' });
     } catch (error) {
