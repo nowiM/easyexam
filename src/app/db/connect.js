@@ -1,19 +1,25 @@
 import mongoose from 'mongoose';
 
-const connectDB = async () => {
-    console.log('Attempting to connect to MongoDB...');
+let isConnected = 0; // 연결 상태를 캐시
 
-    if (mongoose.connection.readyState >= 1) {
-        console.log('MongoDB already connected.');
+const connectDB = async () => {
+    if (isConnected) {
+        console.log('MongoDB is already connected.');
         return;
     }
 
     try {
-        await mongoose.connect(process.env.MONGO_URI);
+        console.log('Attempting to connect to MongoDB...');
+        const connection = await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+
+        isConnected = connection.connections[0].readyState; // 연결 상태 저장
         console.log('MongoDB Connected');
     } catch (error) {
         console.error('MongoDB connection error:', error);
-        process.exit(1);
+        throw new Error('Failed to connect to MongoDB');
     }
 };
 
