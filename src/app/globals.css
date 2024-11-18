@@ -205,18 +205,18 @@ input[type='number'] {
 }
 
 /* topice 페이지 CSS */
-.container .testContainer {
+.container .topiceAndComment .topiceContainer {
     width: 100%;
     background-color: #F5F5F7;
     border-radius: 12px;
 }
 
-.container .testContainer h2 {
+.container .topiceAndComment .topiceContainer h2 {
     text-align: center;
     padding: 40px 0;
 }
 
-.container .testContainer form {
+.container .topiceAndComment .topiceContainer form {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -224,27 +224,27 @@ input[type='number'] {
     padding-bottom: 40px;
 }
 
-.container .testContainer form .question {
+.container .topiceAndComment .topiceContainer form .question {
     width: 400px;
     padding: 20px;
     border-radius: 12px;
     background-color: white;
 }
 
-.container .testContainer form .question .askNum {
+.container .topiceAndComment .topiceContainer form .question .askNum {
     text-align: center;
     margin-bottom: 5px;
 }
 
-.container .testContainer form .question.green{
+.container .topiceAndComment .topiceContainer form .question.green{
     background-color: #8DECB4;
 }
 
-.container .testContainer form .question.red{
+.container .topiceAndComment .topiceContainer form .question.red{
     background-color: #FF8A8A;
 }
 
-.container .testContainer form .question .questionField {
+.container .topiceAndComment .topiceContainer form .question .questionField {
     width: 100%;
     height: 300px;
     font-size: 13px;
@@ -254,14 +254,14 @@ input[type='number'] {
     resize: vertical; /* 세로 방향으로만 크기 조절 가능하게 설정 */
 }
 
-.container .testContainer form .question .questionField.green {
+.container .topiceAndComment .topiceContainer form .question .questionField.green {
     background-color: #8DECB4;
 }
-.container .testContainer form .question .questionField.red {
+.container .topiceAndComment .topiceContainer form .question .questionField.red {
     background-color: #FF8A8A;
 }
 
-.container .testContainer form .question .answerField {
+.container .topiceAndComment .topiceContainer form .question .answerField {
     width: 100%;
     height: 100px;
     font-size: 13px;
@@ -277,22 +277,22 @@ textarea::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Edge에서 스크롤바 숨김 */
 }
 
-.container .testContainer form .question .answerField.green {
+.container .topiceAndComment .topiceContainer form .question .answerField.green {
     background-color: #8DECB4;
 }
-.container .testContainer form .question .answerField.red {
+.container .topiceAndComment .topiceContainer form .question .answerField.red {
     background-color: #FF8A8A;
 }
 
-.container .testContainer form .question .correctBtn {
+.container .topiceAndComment .topiceContainer form .question .correctBtn {
     margin-top: 20px;
 }
 
-.container .testContainer form .question .correctBtn:first-child {
+.container .topiceAndComment .topiceContainer form .question .correctBtn:first-child {
     border: 1px solid black;
 }
 
-.container .testContainer form .question .correctBtn button {
+.container .topiceAndComment .topiceContainer form .question .correctBtn button {
     width: 50%;
     color: black;
     font-weight: 600;
@@ -303,41 +303,41 @@ textarea::-webkit-scrollbar {
     cursor: pointer;
 }
 
-.container .testContainer form .question .correctBtn .correct.green {
+.container .topiceAndComment .topiceContainer form .question .correctBtn .correct.green {
     background-color: #8DECB4;
 }
 
-.container .testContainer form .question .correctBtn .rong.green {
+.container .topiceAndComment .topiceContainer form .question .correctBtn .rong.green {
     background-color: #8DECB4;
 }
 
-.container .testContainer form .question .correctBtn .correct.red {
+.container .topiceAndComment .topiceContainer form .question .correctBtn .correct.red {
     background-color: #FF8A8A;
 }
 
-.container .testContainer form .question .correctBtn .rong.red {
+.container .topiceAndComment .topiceContainer form .question .correctBtn .rong.red {
     background-color: #FF8A8A;
 }
 
-.container .testContainer form .question .correctBtn .correct:hover {
+.container .topiceAndComment .topiceContainer form .question .correctBtn .correct:hover {
     color: white;
     background-color: #7fe0a7;
 }
 
-.container .testContainer form .question .correctBtn .rong:hover {
+.container .topiceAndComment .topiceContainer form .question .correctBtn .rong:hover {
     color: white;
     background-color: #fc7575;
 }
 
-.container .testContainer form .buttonContainer {
+.container .topiceAndComment .topiceContainer form .buttonContainer {
     position: fixed;
     display: flex;
     bottom: 30px;
     right: 30px;
 }
 
-.container .testContainer form .buttonContainer .submitBtn,
-.container .testContainer form .buttonContainer .calcBtn  {
+.container .topiceAndComment .topiceContainer form .buttonContainer .submitBtn,
+.container .topiceAndComment .topiceContainer form .buttonContainer .calcBtn  {
     width: 40px;
     height: 40px;
     border: 1px solid #F5F5F7;
@@ -349,13 +349,152 @@ textarea::-webkit-scrollbar {
     cursor: pointer;
 }
 
-.container .testContainer form .buttonContainer .submitBtn:hover,
-.container .testContainer form .buttonContainer .calcBtn:hover {
+.container .topiceAndComment .topiceContainer form .buttonContainer .submitBtn:hover,
+.container .topiceAndComment .topiceContainer form .buttonContainer .calcBtn:hover {
     background-color: #f1f1f1;
 }
 
-.container .testContainer form .buttonContainer .calcBtn {
+.container .topiceAndComment .topiceContainer form .buttonContainer .calcBtn {
     margin-right: 12px;
+}
+
+.container .topiceAndComment .commentConainer {
+    margin-top: 30px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs h3 {
+    padding: 20px 0;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs ul {
+    list-style: none;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-top: 1px solid #ccc;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs ul li .commentHeader {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs ul li .commentHeader .username {
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs ul li .commentControl {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* 댓글 컨테이너 */
+.commentControl {
+    position: relative; /* 드롭다운 메뉴의 위치 기준 */
+    display: inline-block; /* 버튼 옆에 드롭다운 표시 */
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs ul li .commentControl .saveBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.updateInput {
+    width: 100%;
+    height: 80px;
+    resize: none;
+}
+
+/* 드롭다운 메뉴 버튼 */
+.menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    position: relative;
+}
+
+/* 드롭다운 메뉴 컨테이너 */
+.dropdown-menu {
+    position: absolute;
+    top: 30px; /* 버튼 아래로 위치 */
+    right: 0; /* 버튼의 오른쪽 정렬 */
+    background-color: #ffffff; /* 흰색 배경 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 8px; /* 둥근 모서리 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 약간의 그림자 */
+    z-index: 1000; /* 다른 요소보다 위에 표시 */
+    padding: 8px 0; /* 메뉴 아이템 간격 */
+    width: 120px; /* 드롭다운 너비 */
+}
+
+/* 드롭다운 메뉴 버튼 */
+.dropdown-menu button {
+    display: block; /* 한 줄에 하나씩 표시 */
+    width: 100%; /* 버튼 전체 크기를 드롭다운 너비로 확장 */
+    background: none; /* 버튼 배경 제거 */
+    border: none; /* 기본 버튼 테두리 제거 */
+    padding: 8px 16px; /* 내부 여백 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+    font-size: 14px; /* 폰트 크기 */
+    color: #333; /* 텍스트 색상 */
+    cursor: pointer; /* 마우스 포인터 */
+    transition: background-color 0.2s ease; /* 배경색 전환 효과 */
+}
+
+/* 드롭다운 버튼 호버 시 */
+.dropdown-menu button:hover {
+    background-color: #f5f5f5; /* 호버 시 밝은 배경색 */
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs .inputFiledContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs .inputFiledContainer > input {
+    border: none;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs .inputFiledContainer > textarea {
+    border: none;
+    margin: 15px 0 5px 0;
+    resize: none;
+}
+
+.abc {
+    display: flex;
+    justify-content: end;
+}
+
+.container .topiceAndComment .commentConainer .comentListAndinputs .inputFiledContainer .abc > button {
+    width: 46px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 /* 계산 모달창 */
@@ -388,6 +527,7 @@ textarea::-webkit-scrollbar {
     border-radius: 5px;
     cursor: pointer;
 }
+
 /* footer */
 .container .footer {
     text-align: center;
@@ -477,7 +617,7 @@ textarea::-webkit-scrollbar {
     .topiceContainer .topiceList {
         justify-content: center;
     }
-    
+
     .topiceContainer .topiceList .topice {
         width: 32vw;
         height: auto;
@@ -496,8 +636,12 @@ textarea::-webkit-scrollbar {
         font-size: 1.8vw;
     }
 
-    .container .testContainer {
+    .container .topiceAndComment .topiceContainer {
         border-radius: 0;
+    }
+
+    .container .commentConainer {
+        border-radius: 0 !important;
     }
 }
 
@@ -513,7 +657,7 @@ textarea::-webkit-scrollbar {
         box-shadow: none;
     }
     
-    .container .testContainer form .question {
+    .container .topiceAndComment .topiceContainer form .question {
         width: 100%;
         border-radius: 0;
     }

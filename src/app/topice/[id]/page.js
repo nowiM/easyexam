@@ -1,8 +1,9 @@
-// app/test/[id]/page.js
+// app/topice/[id]/page.js
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Modal from '../../components/Modal';
+import CommentSection from '../../components/CommentSection';
 
 const TopicePage = ({ params }) => {
     const [topice, setTopice] = useState(null);
@@ -105,6 +106,7 @@ const TopicePage = ({ params }) => {
     };
 
     let questions = [];
+
     if (topice && topice.questions) {
         for(let i = 0; i < topice.questions; i++) {
             questions.push(
@@ -159,22 +161,32 @@ const TopicePage = ({ params }) => {
     }
 
     return (
-        <div className='testContainer'>
-            {topice ? (
-                <>
-                    <h2>{topice.title}</h2>
-                    <form onSubmit={handleSubmit}>
-                        {questions}
-                        <div className="buttonContainer">
-                            <button className='calcBtn' type="button" onClick={calc}>계산</button>
-                            <button className='submitBtn' type="submit">제출</button>
-                        </div>
-                    </form>
-                    {isModalOpen && <Modal message={modalMessage} onClose={closeModal} />}
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
+        <div className="topiceAndComment">
+            <div className='topiceContainer'>
+                {topice ? (
+                    <>
+                        <h2>{topice.title}</h2>
+                        <form onSubmit={handleSubmit}>
+                            {questions}
+                            <div className="buttonContainer">
+                                <button className='calcBtn' type="button" onClick={calc}>계산</button>
+                                <button className='submitBtn' type="submit">제출</button>
+                            </div>
+                        </form>
+                        {isModalOpen && <Modal message={modalMessage} onClose={closeModal} />}
+                    </>
+                ) : (
+                    <p>Loading...</p>
+                    )}
+            </div>
+            <div className="commentConainer">
+                {topice ? (
+                        <CommentSection topiceId={topice.id} />
+                    ) : (
+                        <p>Loading...</p>
+                    )
+                }
+            </div>
         </div>
     );
 };
