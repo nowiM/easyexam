@@ -85,11 +85,7 @@ body {
 .controlTitle {
     color: black;
     font-size: 16px;
-<<<<<<< HEAD
     font-weight: normal;
-=======
-    font-weight: 0;
->>>>>>> css-improvements
     margin-left: 12px;
 }
 
@@ -414,7 +410,7 @@ textarea::-webkit-scrollbar {
 
     .topiceContainer .topiceList .topice {
         width: 247.5px;
-        height: 247.5px;
+        height: auto;
     }
 
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
@@ -438,7 +434,7 @@ textarea::-webkit-scrollbar {
     
     .topiceContainer .topiceList .topice {
         width: 192px;
-        height: 192px;
+        height: auto;
     }
 
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
@@ -478,15 +474,13 @@ textarea::-webkit-scrollbar {
         height: 20px;
     }
     
-<<<<<<< HEAD
-=======
     .topiceContainer .topiceList {
         justify-content: center;
     }
-
->>>>>>> css-improvements
+    
     .topiceContainer .topiceList .topice {
         width: 32vw;
+        height: auto;
     }
     
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
@@ -524,6 +518,18 @@ textarea::-webkit-scrollbar {
         border-radius: 0;
     }
 
+    .buttonContainer {
+        flex-direction: column;
+        right: 10px !important;
+    }
+
+    .buttonContainer .calcBtn {
+        margin-right: 0 !important;
+        margin-bottom: 12px !important;
+    }
+}
+
+@media (max-width: 440px) {
     .topiceContainer .topiceList {
         justify-content: start;
     }
@@ -543,15 +549,5 @@ textarea::-webkit-scrollbar {
     }
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
         font-size: 3vw;
-    }
-
-    .buttonContainer {
-        flex-direction: column;
-        right: 10px !important;
-    }
-
-    .buttonContainer .calcBtn {
-        margin-right: 0 !important;
-        margin-bottom: 12px !important;
     }
 }
