@@ -84,8 +84,9 @@ body {
 
 .controlTitle {
     color: black;
+    font-size: 16px;
     font-weight: 0;
-    margin-left: 15px;
+    margin-left: 12px;
 }
 
 .topiceContainer {
@@ -101,7 +102,7 @@ body {
 }
 
 .topiceContainer .topiceList .topice {
-    width: 240px; /* 기본 width 설정 */
+    width: 300px; /* 기본 width 설정 */
 }
 
 .topiceContainer .topiceList .topice .topicLink {
@@ -114,7 +115,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 30px;
+    padding: 0 20px 30px 20px;
     border-radius: 12px;
 }
 
@@ -123,16 +124,17 @@ body {
 }
 
 .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
-    width: 200px;
-    height: 200px
+    width: 240px;
+    height: 240px
 }
 
 .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
     font-size: 15px;
 }
 
-/* crate 페이지 CSS */
-.createForm {
+/* crate 페이지, update 페이지 CSS */
+.createCotainer,
+.updateCotainer {
     width: 400px;
     height: 400px;
     margin: 50px auto;
@@ -146,34 +148,36 @@ body {
     align-items: center; /* 수평 가운데 정렬 */
 }
 
-.createForm form {
+.createCotainer .createForm,
+.updateCotainer .updataForm {
     width: 90%;
 }
 
-.createForm h2 {
+.createCotainer h2,
+.updateCotainer h2 {
     margin-bottom: 30px;
     text-align: center;
 }
 
-.createForm p {
-    margin-bottom: 30px;
-    width: 100%;
-}
-
-.createForm input[type="text"],
-.createForm input[type="number"],
-.createForm input[type="submit"] {
+.createCotainer input[type="text"],
+.createCotainer input[type="number"],
+.createCotainer input[type="submit"],
+.updateCotainer input[type="text"],
+.updateCotainer input[type="number"],
+.updateCotainer input[type="button"] {
     width: 100%; /* 입력 필드의 너비를 100%로 유지 */
     max-width: 100%; /* max-width로 고정 */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 30px;
     background-color: #f9f9f9;
     font-size: 16px;
     box-sizing: border-box;
 }
 
-.createForm input[type="submit"] {
+.createCotainer input[type="submit"], 
+.updateCotainer input[type="button"]{
     background-color: #F2E70C;
     color: black;
     border: none;
@@ -182,11 +186,24 @@ body {
     cursor: pointer;
 }
 
-.createForm input[type="submit"]:hover {
+.createCotainer input[type="submit"]:hover, 
+.updateCotainer input[type="button"]:hover {
     background-color: #FFF80B;
 }
 
-/* test 페이지 CSS */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox  */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+/* topice 페이지 CSS */
 .container .testContainer {
     width: 100%;
     background-color: #F5F5F7;
@@ -229,7 +246,7 @@ body {
 .container .testContainer form .question .questionField {
     width: 100%;
     height: 300px;
-    padding: 10px;
+    font-size: 13px;
     padding: 10px;
     border-radius: 12px;
     margin: 5px 0 10px 0;
@@ -246,6 +263,7 @@ body {
 .container .testContainer form .question .answerField {
     width: 100%;
     height: 100px;
+    font-size: 13px;
     padding: 8px;
     border-radius: 12px;
     margin-top: 5px;
@@ -339,6 +357,37 @@ textarea::-webkit-scrollbar {
     margin-right: 12px;
 }
 
+/* 계산 모달창 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-overlay .modal-content button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* footer */
 .container .footer {
     text-align: center;
     padding: 12px;
@@ -357,13 +406,19 @@ textarea::-webkit-scrollbar {
     .container .mainPageCotainer .mainPage {
         font-size: 219px;
     }
+
     .topiceContainer .topiceList .topice {
-        width: 198px;
+        width: 247.5px;
+        height: 247.5px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
+        padding: 0 17.5px 20px 17.5px;
     }
 
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
-        width: 100%;
-        height: 100%;
+        width: 180px;
+        height: 180px;
     }
 }
 
@@ -375,13 +430,23 @@ textarea::-webkit-scrollbar {
     .container .mainPageCotainer .mainPage {
         font-size: 170px;
     }
+    
     .topiceContainer .topiceList .topice {
-        width: 192.5px;
+        width: 192px;
+        height: 192px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
+        padding: 0 12px 20px 12px;
     }
 
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
-        width: 100%;
-        height: 100%;
+        width: 180px;
+        height: 180px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
+        font-size: 13px;
     }
 }
 
@@ -391,12 +456,12 @@ textarea::-webkit-scrollbar {
     }
 
     .mainPageCotainer .mainPage.behind {
-        font-size: 22vw; 
+        font-size: 21vw; 
     }
     
     .container .createAndDelete .copy {
         width: 100%;
-        font-size: 12px;
+        font-size: 13px;
     }
 
     .container .createAndDelete .controlList {
@@ -408,15 +473,18 @@ textarea::-webkit-scrollbar {
         height: 20px;
     }
     
-    .controlTitle {
-        margin-left: 15px;
+    .topiceContainer .topiceList {
+        justify-content: center;
     }
 
-    
     .topiceContainer .topiceList .topice {
-        width: 25vw;
+        width: 32vw;
     }
     
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
+        padding: 0 20px 20px 20px;
+    }
+
     .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
         width: 100%;
         height: 100%;
@@ -436,7 +504,7 @@ textarea::-webkit-scrollbar {
         flex-direction: column;
     }
 
-    .createForm {
+    .createCotainer {
         width: 100%;
         border: none;
         margin: 0 auto;
@@ -446,6 +514,27 @@ textarea::-webkit-scrollbar {
     .container .testContainer form .question {
         width: 100%;
         border-radius: 0;
+    }
+
+    .topiceContainer .topiceList {
+        justify-content: start;
+    }
+
+    .topiceContainer .topiceList .topice {
+        width: 50vw;
+        height: auto;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle {
+        padding: 0 5px 20px 5px;
+    }
+
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .folder {
+        width: 100%;
+        height: 100%;
+    }
+    .topiceContainer .topiceList .topice .topicLink .imgAndTitle .topiceTitle {
+        font-size: 3vw;
     }
 
     .buttonContainer {
