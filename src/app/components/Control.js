@@ -39,22 +39,23 @@ const Control = () => {
             <ul className='controlList'>
                 <li>
                     <Link href="/create">
-                        <img className='controlImg' src="/images/create.svg" alt="createBtn" />
+                        <img className='controlImg' src="/images/create.svg" alt="createImg" />
                         <span className='controlTitle'>Create</span>
                     </Link>
                 </li>
                 {id ? 
                     <>
                         <li>
-                            <button onClick={handleDelete}>
-                                <img className='controlImg' src="/images/delete.svg" alt="DeleteBtn" />
-                                <span className='controlTitle'>Delete</span>
-                            </button>
+                            <Link href={`/update/${id}`}>
+                                <img className='controlImg' src="/images/update.svg" alt="UpdateImg" />
+                                <span className='controlTitle'>Update</span>
+                            </Link>
                         </li>
                         <li>
-                            <Link href={`/update/${id}`}>
-                                Update
-                            </Link>
+                            <button onClick={handleDelete}>
+                                <img className='controlImg' src="/images/delete.svg" alt="DeleteImg" />
+                                <span className='controlTitle'>Delete</span>
+                            </button>
                         </li>
                     </>
                 : null}

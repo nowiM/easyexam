@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { set } from 'mongoose';
+
 
 const UpdatePage = ({ params }) => {
     const [topice, setTopice] = useState(null);
@@ -42,8 +42,7 @@ const UpdatePage = ({ params }) => {
             });
 
             if (response.ok) {
-                alert('Item updated successfully');
-                router.push('/');
+                router.push(`/topice/${id}`); // 업데이트된 페이지로 이동
             } else {
                 console.error('Failed to update item');
             }
@@ -53,27 +52,38 @@ const UpdatePage = ({ params }) => {
     };
 
     return (
-        <div>
-            {topice ? (
-                <>
-                    <h2>Update {topice.title}</h2>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        placeholder="Update Title"
-                    />
-                    <input 
-                        type="number" 
-                        value={question}
-                        onChange={(e) => setQuestion(e.target.value)}
-                        placeholder='Updata question'
-                    />
-                    <button onClick={handleUpdate}>Save Changes</button>
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
+        <div className='updateCotainer'>
+            <div className="updateForm">                
+                {topice ? (
+                    <>
+                        <h2>시험과목 수정</h2>
+
+                        <input
+                            type="text"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            placeholder="시험 과목을 수정해주세요."
+                        />
+
+                        <input 
+                            type="number" 
+                            value={question}
+                            onChange={(e) => setQuestion(e.target.value)}
+                            min={0}
+                            max={300}
+                            placeholder='시험 문제를 수정해주세요.'
+                        />
+
+                        <input 
+                            type="button" 
+                            value="Save" 
+                            onClick={handleUpdate}
+                        />
+                    </>
+                ) : (
+                    <p>Loading...</p>
+                )}
+            </div>
         </div>
     );
 };

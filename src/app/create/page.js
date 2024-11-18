@@ -23,7 +23,7 @@ const Create = () => {
 
         if (response.ok) {
             const newTopice = await response.json();
-            router.push(`/test/${newTopice.id}`); // 생성된 페이지로 이동
+            router.push(`/topice/${newTopice.id}`); // 생성된 페이지로 이동
             router.refresh(); // 페이지 강제 새로고침으로 최신 데이터 반영
         } else {
             console.error('Failed to create new topic');
@@ -32,31 +32,31 @@ const Create = () => {
 
     return (
         <>
-            <div className="createForm">
+            <div className="createCotainer">
                 <h2>시험과목 생성</h2>
-                <form onSubmit={handleSubmit}>
-                    <p>
-                        <input
-                            type="text"
-                            name="title"
-                            placeholder="시험 과목을 입력해주세요"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            />
-                    </p>
-                    <p>
-                        <input
-                            type="number"
-                            name="questions"
-                            min={0}
-                            placeholder="몇 문제 인가요?"
-                            value={questions}
-                            onChange={(e) => setQuestions(e.target.value)}
+                <form className='createForm' onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        name="title"
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                        placeholder="시험 과목을 입력해주세요."
                         />
-                    </p>
-                    <p>
-                        <input type="submit" value="create" />
-                    </p>
+
+                    <input
+                        type="number"
+                        name="questions"
+                        value={questions}
+                        min={0}
+                        max={300}
+                        onChange={(e) => setQuestions(e.target.value)}
+                        placeholder="몇 문제 인가요?"
+                    />
+
+                    <input 
+                        type="submit" 
+                        value="Create" 
+                    />
                 </form>
             </div>
         </>

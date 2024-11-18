@@ -84,8 +84,9 @@ body {
 
 .controlTitle {
     color: black;
+    font-size: 16px;
     font-weight: 0;
-    margin-left: 15px;
+    margin-left: 12px;
 }
 
 .topiceContainer {
@@ -131,8 +132,9 @@ body {
     font-size: 15px;
 }
 
-/* crate 페이지 CSS */
-.createForm {
+/* crate 페이지, update 페이지 CSS */
+.createCotainer,
+.updateCotainer {
     width: 400px;
     height: 400px;
     margin: 50px auto;
@@ -146,34 +148,36 @@ body {
     align-items: center; /* 수평 가운데 정렬 */
 }
 
-.createForm form {
+.createCotainer .createForm,
+.updateCotainer .updataForm {
     width: 90%;
 }
 
-.createForm h2 {
+.createCotainer h2,
+.updateCotainer h2 {
     margin-bottom: 30px;
     text-align: center;
 }
 
-.createForm p {
-    margin-bottom: 30px;
-    width: 100%;
-}
-
-.createForm input[type="text"],
-.createForm input[type="number"],
-.createForm input[type="submit"] {
+.createCotainer input[type="text"],
+.createCotainer input[type="number"],
+.createCotainer input[type="submit"],
+.updateCotainer input[type="text"],
+.updateCotainer input[type="number"],
+.updateCotainer input[type="button"] {
     width: 100%; /* 입력 필드의 너비를 100%로 유지 */
     max-width: 100%; /* max-width로 고정 */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 30px;
     background-color: #f9f9f9;
     font-size: 16px;
     box-sizing: border-box;
 }
 
-.createForm input[type="submit"] {
+.createCotainer input[type="submit"], 
+.updateCotainer input[type="button"]{
     background-color: #F2E70C;
     color: black;
     border: none;
@@ -182,11 +186,24 @@ body {
     cursor: pointer;
 }
 
-.createForm input[type="submit"]:hover {
+.createCotainer input[type="submit"]:hover, 
+.updateCotainer input[type="button"]:hover {
     background-color: #FFF80B;
 }
 
-/* test 페이지 CSS */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox  */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+/* topice 페이지 CSS */
 .container .testContainer {
     width: 100%;
     background-color: #F5F5F7;
@@ -440,11 +457,6 @@ textarea::-webkit-scrollbar {
         height: 20px;
     }
     
-    .controlTitle {
-        margin-left: 15px;
-    }
-
-    
     .topiceContainer .topiceList .topice {
         width: 25vw;
     }
@@ -468,7 +480,7 @@ textarea::-webkit-scrollbar {
         flex-direction: column;
     }
 
-    .createForm {
+    .createCotainer {
         width: 100%;
         border: none;
         margin: 0 auto;
