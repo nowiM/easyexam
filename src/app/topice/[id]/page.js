@@ -8,6 +8,7 @@ import CommentSection from '../../components/CommentSection';
 const TopicePage = ({ params }) => {
     const [topice, setTopice] = useState(null);
     const [answers, setAnswers] = useState([]);
+    const [evaluations, setEvaluations] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
     const router = useRouter();
@@ -39,17 +40,26 @@ const TopicePage = ({ params }) => {
         fetchData();
     }, [params.id, router]);
 
-    
+    useEffect(() => {
+        if (answers.length > 0) {
+            setEvaluations(
+                answers.map(answer => ({
+                    correct: null,
+                }))
+            );
+        }
+    }, [answers]);
+
     const calc = () => {
-        const scoreO = answers.filter(answer => answer.correct === 'O').length;
-        const scoreX = answers.filter(answer => answer.correct === 'X').length;
-        const notCheck = answers.map((answer, index) => !answer.correct ? index + 1 : null).filter(index => index !== null);
+        const scoreO = evaluations.filter(evaluation => evaluation.correct === 'O').length;
+        const scoreX = evaluations.filter(evaluation => evaluation.correct === 'X').length;
+        const notCheck = evaluations.map((evaluation, index) => !evaluation.correct ? index + 1 : null).filter(index => index !== null);
 
         const sum = scoreO + scoreX;
         if(sum === 0) {
-            setModalMessage('한 문제도 체크하지 않았습니다. 정답을 체크해주세요.')
+            setModalMessage('정답을 체크해주세요!!')
         } else if (sum < topice.questions) {
-            setModalMessage(`체크하지 않은 문항이 있습니다. 체크하지 않은 문제의 개수: ${notCheck.join(', ')}`);
+            setModalMessage(`체크하지 않은 문항이 있습니다. 체크하지 않은 문항: ${notCheck.join(', ')}`);
         } else {
             setModalMessage(`${topice.questions} 문제 중에 정답: ${scoreO} 오답: ${scoreX}`);
         }
@@ -61,13 +71,13 @@ const TopicePage = ({ params }) => {
     };
 
     const scoreCalc = (index, value) => {
-        setAnswers(prevAnswers => {
-            const updateAnswers = [...prevAnswers];
-            updateAnswers[index] = {
-                ...updateAnswers[index],
+        setEvaluations(prevEvaluation => {
+            const updateEvaluation = [...prevEvaluation];
+            updateEvaluation[index] = {
+                ...updateEvaluation[index],
                 correct: value,
             };
-            return updateAnswers;
+            return updateEvaluation;
         });
     };
 
@@ -112,14 +122,14 @@ const TopicePage = ({ params }) => {
             questions.push(
                 <div 
                     key={i}
-                    className={`question ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
+                    className={`question ${evaluations[i]?.correct && evaluations[i]?.correct === 'O' ? 'green' : evaluations[i]?.correct === 'X' ? 'red' : 'initial'}`}
                 >
                     <h3 className='askNum'>문항 {i + 1}</h3>
                     <p>
                         <label>시험 문제:</label>
                         <textarea 
                             type="text" 
-                            className={`questionField ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
+                            className={`questionField ${evaluations[i]?.correct && evaluations[i]?.correct === 'O' ? 'green' : evaluations[i]?.correct === 'X' ? 'red' : 'initial'}`}
                             name={`question-${i}`} 
                             placeholder='시험 문제 입력'
                             value={answers[i]?.question || ''}
@@ -130,7 +140,7 @@ const TopicePage = ({ params }) => {
                         <label>답안:</label>
                         <textarea 
                             type="text"
-                            className={`answerField ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
+                            className={`answerField ${evaluations[i]?.correct && evaluations[i]?.correct === 'O' ? 'green' : evaluations[i]?.correct === 'X' ? 'red' : 'initial'}`}
                             name={`answer-${i}`} 
                             placeholder='답안 입력'
                             value={answers[i]?.answer || ''}
@@ -139,7 +149,7 @@ const TopicePage = ({ params }) => {
                     </p>
                     <div className='correctBtn'>
                         <button 
-                            className={`correct ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
+                            className={`correct ${evaluations[i]?.correct && evaluations[i]?.correct === 'O' ? 'green' : evaluations[i]?.correct === 'X' ? 'red' : 'initial'}`}
                             type='button' 
                             onClick={() => scoreCalc(i, 'O')} 
                             value='O'
@@ -147,7 +157,7 @@ const TopicePage = ({ params }) => {
                             O
                         </button>
                         <button
-                            className={`rong ${answers[i]?.correct && answers[i]?.correct === 'O' ? 'green' : answers[i]?.correct === 'X' ? 'red' : 'initial'}`}
+                            className={`rong ${evaluations[i]?.correct && evaluations[i]?.correct === 'O' ? 'green' : evaluations[i]?.correct === 'X' ? 'red' : 'initial'}`}
                             type='button' 
                             onClick={() => scoreCalc(i, 'X')} 
                             value='X'
