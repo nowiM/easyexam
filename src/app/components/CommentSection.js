@@ -53,6 +53,7 @@ const CommentSection = ({ topiceId }) => {
 
     // 댓글 작성
     const handleAddComment = async () => {
+        if (!content.trim()) return; // 내용이 없으면 등록 방지
         try {
             const response = await fetch('/api/comments', {
                 method: 'POST',
@@ -75,6 +76,14 @@ const CommentSection = ({ topiceId }) => {
             }
         } catch (error) {
             console.error('Error adding comment:', error);
+        }
+    };
+
+    // Enter 키로 댓글 등록
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter' && !event.shiftKey) {
+            event.preventDefault(); // 새 줄 생성 방지
+            handleAddComment();
         }
     };
 
@@ -199,8 +208,9 @@ const CommentSection = ({ topiceId }) => {
                     placeholder="댓글을 남겨주세요."
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
+                    onKeyDown={handleKeyDown} // Enter 키 이벤트
                 />
-                <div className="abc">
+                <div className="actionBtn">
                     <button onClick={handleAddComment}>등록</button>
                 </div>
             </div>
