@@ -43,9 +43,7 @@ const TopicePage = ({ params }) => {
     useEffect(() => {
         if (answers.length > 0) {
             setEvaluations(
-                answers.map(answer => ({
-                    correct: null,
-                }))
+                answers.map(() => ({ correct: null }))
             );
         }
     }, [answers]);
@@ -105,14 +103,17 @@ const TopicePage = ({ params }) => {
             });
     
             if (response.ok) {
-                const result = await response.json();
-                console.log('답안이 성공적으로 저장되었습니다:', result);
+                setModalMessage('답안이 성공적으로 저장되었습니다.');
             } else {
+                setModalMessage('답안을 저장하는데 실패하였습니다. 다시 시도해주세요.');
                 console.error('답안 저장 실패:', response.statusText);
             }
         } catch (error) {
+            setModalMessage('서버와의 통신 중 오류가 발생하였습니다. 다시 시도해주세요.');
             console.error('서버와의 통신 중 오류 발생:', error);
         }
+
+        setIsModalOpen(true);
     };
 
     let questions = [];
