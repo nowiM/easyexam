@@ -160,23 +160,36 @@ const CommentSection = ({ topiceId }) => {
                             {/* 드롭다운 메뉴 */}
                             {activeDropdown === comment._id && (
                                 <div className="dropdown-menu" ref={dropdownRef}>
-                                    <button
-                                        onClick={() => {
-                                            setEditingComment(comment._id);
-                                            setUpdateContent(comment.content); // 수정할 댓글 내용 설정
-                                            setActiveDropdown(null); // 드롭다운 닫기
-                                        }}
-                                    >
-                                        수정
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            handleDeleteComment(comment._id);
-                                            setActiveDropdown(null); // 드롭다운 닫기
-                                        }}
-                                    >
-                                        삭제
-                                    </button>
+                                    {username === comment.username ? (
+                                        <>
+                                            <button
+                                                onClick={() => {
+                                                    setEditingComment(comment._id);
+                                                    setUpdateContent(comment.content); // 수정할 댓글 내용 설정
+                                                    setActiveDropdown(null); // 드롭다운 닫기
+                                                }}
+                                            >
+                                                수정
+                                            </button>
+                                            <button
+                                                onClick={() => {
+                                                    handleDeleteComment(comment._id);
+                                                    setActiveDropdown(null); // 드롭다운 닫기
+                                                }}
+                                            >
+                                                삭제
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <button
+                                            onClick={() => {
+                                                alert('신고가 접수되었습니다.');
+                                                setActiveDropdown(null); // 드롭다운 닫기
+                                            }}
+                                        >
+                                            신고
+                                        </button>
+                                    )}
                                 </div>
                             )}
                             {/* 저장 버튼 */}
