@@ -25,7 +25,7 @@
 - **API**: Next.js API Routes
 - **Styling**: CSS (글로벌 스타일 포함)
 
-##API 라우트
+## API 라우트
 - /api/answers: 답안 데이터 관리.
 - /api/comments: 댓글 데이터 관리.
 - /api/topices: 주제 데이터 CRUD.
