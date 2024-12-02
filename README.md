@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 국가 자격증 복원 프로젝트
 
-## Getting Started
+## 프로젝트 개요
+이 프로젝트는 국가 자격증 시험 답안을 효과적으로 관리하고 사용자 간 의견 공유를 지원하기 위한 웹 애플리케이션입니다. 주제별 문제와 답안을 관리하며, 각 질문에 대해 사용자들이 댓글로 의견을 나눌 수 있는 기능을 제공합니다.
 
-First, run the development server:
+## 개발 기간 및 배포 주소
+- **개발 기간** : 2024.10 ~ 
+- **배포 주소** : [https://easyexam.me/](https://easyexam.me/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 주요 기능
+### 1. 문제 및 답안 관리
+- 시험 문제와 사용자가 제출한 답안을 저장, 조회, 관리할 수 있는 기능.
+- JSON 파일 또는 데이터베이스를 기반으로 데이터를 저장하며, 주제별 답안 관리를 지원.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 댓글 및 토론 기능
+- 각 문제에 대해 댓글을 추가할 수 있으며, 사용자들 간의 의견 공유와 피드백 가능.
+- 실시간 댓글 표시 및 삭제 기능 지원.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 3. 데이터 저장 및 관리
+- MongoDB와 연동하여 시험 데이터, 사용자 답안, 댓글 등을 효율적으로 저장 및 관리.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 기술 스택
+- **Frontend**: React, Next.js
+- **Backend**: Node.js, MongoDB
+- **API**: Next.js API Routes
+- **Styling**: CSS (글로벌 스타일 포함)
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+##API 라우트
+- /api/answers: 답안 데이터 관리.
+- /api/comments: 댓글 데이터 관리.
+- /api/topices: 주제 데이터 CRUD.
+- /api/topices/[id]: 특정 주제 데이터 관리.
