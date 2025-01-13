@@ -1,7 +1,7 @@
 # 시험 복원 및 채점  
 
 **개발 기간**: 2024.10 ~ 현재  
-**배포 주소**: [easyexam.com](https://www.easyexam.me/)  
+**배포 주소**: [easyexam.me](https://www.easyexam.me/)  
 
 ---
 
