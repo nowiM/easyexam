@@ -1,19 +1,18 @@
-'use client';
-import React, { Suspense } from 'react';
+// update/[id]/page.js
+import { Suspense } from 'react';
+import SubComponentsWrapper from '../../components/SubComponentsWrapper';
 
-const UpdatePage = ({ params }) => {
+export default async function UpdatePage({ params }) {
+    console.log("UpDate page");
     const paramsId = params.id;
-    const SubComponents = React.lazy(() => import('../../components/SubCompoent'));
 
     return (
         <div className='updateCotainer'>
-            <div className="updateForm">                
+            <div className="updateForm">
                 <Suspense fallback={<div>Loading...</div>}>
-                    <SubComponents id={paramsId}/>
+                    <SubComponentsWrapper id={paramsId} />
                 </Suspense>
             </div>
         </div>
     );
-};
-
-export default UpdatePage;
+}
