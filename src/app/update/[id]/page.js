@@ -11,7 +11,7 @@ export default function UpdatePage({ params }) {
     return (
         <div className='updateCotainer'>
             <div className="updateForm">
-                <ErrorBoundary>
+                <ErrorBoundary fallback={<h2>⚠️ 오류가 발생했습니다. 다시 시도해주세요.</h2>}>
                     <Suspense fallback={<div>Loading...</div>}>
                         <TopicDataFetcher id={paramsId} />
                     </Suspense>

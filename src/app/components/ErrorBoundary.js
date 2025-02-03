@@ -20,7 +20,7 @@ class ErrorBoundary extends Component {
 
     render() {
         if (this.state.hasError) {
-            return <h2>⚠️ 오류가 발생했습니다. 다시 시도해주세요.</h2>;
+            return this.props.fallback;
         }
         return this.props.children;
     }

@@ -6,6 +6,7 @@ export default function TopicDataFetcher({ id }) {
     console.log("TopicDataFetcher page")
     const initialData = use(fetchTopiceData(`${process.env.NEXT_PUBLIC_API_URL}api/topices/${id}`));
     console.log(initialData);
+    
     return (
         <TopicUpdateForm initialData={initialData} />
     );
