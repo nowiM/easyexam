@@ -1,8 +1,8 @@
 'use client';
-import React, { use, useState, startTransition } from 'react';
+import React, { useState, startTransition } from 'react';
 import { useRouter } from 'next/navigation';
 
-const SubComponents = ({ initialData }) => {
+const TopicUpdateForm = ({ initialData }) => {
     console.log("SubComponents page")
     const [title, setTitle] = useState(initialData.title);
     const [questions, setQuestions] = useState(initialData.questions);
@@ -55,4 +55,4 @@ const SubComponents = ({ initialData }) => {
     );
 };
 
-export default SubComponents;
+export default TopicUpdateForm;
