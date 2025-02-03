@@ -50,13 +50,13 @@ export const PUT = async (request, { params }) => {
     try {
         await connectDB(); // MongoDB 연결
         const { id } = params;
-        const { title, question } = await request.json(); // Assume only updating title and question
-        console.log(title, question);
+        const { title, questions } = await request.json(); // Assume only updating title and questions
+        console.log(title, questions);
 
-        // Update title and question fields
+        // Update title and questions fields
         const updatedTopice = await Topice.findOneAndUpdate(
             { id: parseInt(id) },
-            { title, questions: question }, // Update both title and question fields
+            { title, questions: questions }, // Update both title and questions fields
             { new: true } // Option to return the updated document
         );
         console.log(updatedTopice);
