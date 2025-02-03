@@ -2,15 +2,15 @@
 import React, { useState, startTransition } from 'react';
 import { useRouter } from 'next/navigation';
 
-const TopicUpdateForm = ({ initialData }) => {
+const TopicUpdateForm = ({ topiceData }) => {
     console.log("SubComponents page")
-    const [title, setTitle] = useState(initialData.title);
-    const [questions, setQuestions] = useState(initialData.questions);
+    const [title, setTitle] = useState(topiceData.title);
+    const [questions, setQuestions] = useState(topiceData.questions);
     const router = useRouter();
-
+    
     const handleUpdate = async () => {
         try {
-            await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/topices/${initialData.id}`, {
+            await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/topices/${topiceData.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ const TopicUpdateForm = ({ initialData }) => {
             });
 
             startTransition(() => {
-                router.push(`/topice/${initialData.id}`); // 업데이트된 페이지로 이동
+                router.push(`/topice/${topiceData.id}`); // 업데이트된 페이지로 이동
             });
         } catch (error) {
             console.error('Error updating item:', error);

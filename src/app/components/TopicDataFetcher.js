@@ -2,15 +2,17 @@ import React, { use } from 'react';
 import { fetchTopiceData } from '../utils/fetchTopiceData';
 import TopicUpdateForm from './TopicUpdateForm';
 
-export default function TopicDataFetcher({ id }) {
+const TopicDataFetcher = ({ id }) => {
     console.log("TopicDataFetcher page")
-    const initialData = use(fetchTopiceData(`${process.env.NEXT_PUBLIC_API_URL}api/topices/${id}`));
-    console.log(initialData);
+    const topiceData = use(fetchTopiceData(`${process.env.NEXT_PUBLIC_API_URL}api/topices/${id}`));
+    console.log(topiceData);
     
     return (
-        <TopicUpdateForm initialData={initialData} />
+        <TopicUpdateForm topiceData={topiceData} />
     );
 }
+
+export default TopicDataFetcher;
 
 // 실패 유도 코드
 // export default function TopicDataFetcher({ id }) {
