@@ -1,4 +1,4 @@
-const scoreCalc = (index, value, setEvaluations) => {
+const evaluateAnswer  = (index, value, setEvaluations) => {
     setEvaluations(prevEvaluation => {
         const updateEvaluation = [...prevEvaluation];
         updateEvaluation[index] = {
@@ -9,4 +9,4 @@ const scoreCalc = (index, value, setEvaluations) => {
     });
 };
 
-export default scoreCalc;
+export default evaluateAnswer ;
