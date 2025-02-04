@@ -1,12 +1,10 @@
 // update/[id]/page.js
-'use client';
+'use client'
 import React, { Suspense } from 'react';
 import ErrorBoundary from '../../components/ErrorBoundary';
 import TopicDataFetcher from '../../components/TopicDataFetcher';
 
 const UpdatePage = ({ params: { id } }) => {
-    console.log("UpDate page");
-
     return (
         <div className='updateCotainer'>
             <div className="updateForm">

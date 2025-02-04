@@ -1,18 +1,20 @@
-import React, { use } from 'react';
+'use client'
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { fetchTopiceData } from '../utils/fetchTopiceData';
 import TopicUpdateForm from './TopicUpdateForm';
 
 const TopicDataFetcher = ({ id }) => {
-    console.log("TopicDataFetcher page")
-    const topiceData = use(fetchTopiceData(`${process.env.NEXT_PUBLIC_API_URL}api/topices/${id}`));
-    console.log(topiceData);
-    
-    return (
-        <TopicUpdateForm topiceData={topiceData} />
-    );
-}
+    const { data: topiceData } = useSuspenseQuery({
+        queryKey: ['topiceData', id],
+        queryFn: () => fetchTopiceData(`${process.env.NEXT_PUBLIC_API_URL}api/topices/${id}`),
+    });
+
+
+    return <TopicUpdateForm topiceData={topiceData} />;
+};
 
 export default TopicDataFetcher;
+
 
 // 실패 유도 코드
 // export default function TopicDataFetcher({ id }) {

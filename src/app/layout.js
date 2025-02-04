@@ -1,7 +1,7 @@
 // app/layout/js
 import Link from 'next/link'
 import Control from './components/Control';
-
+import ReactQueryProvider from './ReactQueryProvider'
 import "./globals.css";
 
 const RootLayout = ({ children }) => {
@@ -20,21 +20,23 @@ const RootLayout = ({ children }) => {
         <title>EasyExam - 실시간 시험 답안 복원 및 의견 공유</title>
       </head>
       <body>
-        <div className="container">
-          <div className="mainPageCotainer">
-            <Link href='/' className='mainPage behind'>Easy<span className='emphasis'>:</span>Exam</Link>
-          </div>
-          
-          <Control />
+        <ReactQueryProvider>
+          <div className="container">
+            <div className="mainPageCotainer">
+              <Link href='/' className='mainPage behind'>Easy<span className='emphasis'>:</span>Exam</Link>
+            </div>
+            
+            <Control />
 
-          {children}
+            {children}
 
-          <div className="footer">
-            <span className='footer-item'>© 2024 Easy:Exam All right reserved</span>
-            <span className='footer-item'>✉️ contact : iimerty35@gmail.com</span>
-            <span className='footer-item'>© Icons by Icons8</span>
+            <div className="footer">
+              <span className='footer-item'>© 2024 Easy:Exam All right reserved</span>
+              <span className='footer-item'>✉️ contact : iimerty35@gmail.com</span>
+              <span className='footer-item'>© Icons by Icons8</span>
+            </div>
           </div>
-        </div>
+        </ReactQueryProvider>
       </body>
     </html>
   );
