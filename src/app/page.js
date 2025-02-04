@@ -1,28 +1,21 @@
 // app/page.js
-import Link from 'next/link';
+'use client'
 
-const Home = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}api/topices`, { cache: 'no-store' });
-  const topices = await response.json();
+import React, { Suspense } from 'react';
+import ErrorBoundary from './components/ErrorBoundary';
+import TopiceList from './components/TopiceList';
+
+const Home = () => {
   return (
-    <>
     <div className="topiceContainer">
       <ul className='topiceList'>
-          {
-            topices.map(topice => (
-              <li key={topice.id} className='topice'>
-                  <Link className='topicLink' href={`/topice/${topice.id}`}>
-                    <div className="imgAndTitle">
-                        <img className='folder' src="/images/folder.svg" alt="folderImg" />
-                        <span className='topiceTitle'>{topice.title}</span>
-                    </div>
-                  </Link>
-              </li>
-            ))
-          }
-        </ul>
+      <ErrorBoundary fallback={<h2 style={{margin: "auto"}}>⚠️ 오류가 발생했습니다. 다시 시도해주세요.</h2>}>
+        <Suspense fallback={<h2 style={{margin: "auto"}}>Loading...</h2>}>
+          <TopiceList />
+        </Suspense>
+      </ErrorBoundary>
+      </ul>
     </div>
-    </>
   );
 }
 
