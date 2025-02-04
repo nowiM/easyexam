@@ -1,13 +1,13 @@
 'use client';
 import React, { useState, startTransition } from 'react';
 import { useRouter } from 'next/navigation';
-import handleUpdate from '../utils/handleUpdate';
+import handleUpdate from '../../utils/UpdatePage/handleUpdate';
 
-const TopicUpdateForm = ({ topiceData }) => {
+const UpdateForm = ({ topiceData }) => {
     const [title, setTitle] = useState(topiceData.title);
     const [questions, setQuestions] = useState(topiceData.questions);
-    const id = topiceData.id;
     const router = useRouter();
+    const id = topiceData.id;
 
     return (
         <>
@@ -38,4 +38,4 @@ const TopicUpdateForm = ({ topiceData }) => {
     );
 };
 
-export default TopicUpdateForm;
+export default UpdateForm;
