@@ -1,9 +1,8 @@
 // app/page.js
 'use client'
-
 import React, { Suspense } from 'react';
 import ErrorBoundary from './components/ErrorBoundary';
-import TopiceList from './components/TopiceList';
+import TopiceList from './components/MainPage/TopiceList';
 
 const Home = () => {
   return (

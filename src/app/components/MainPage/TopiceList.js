@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import topiceListFetchdata from '../utils/topiceListFetchdata';
+import topiceListFetchdata from '../../utils/MainPage/topiceListFetchdata';
 
 const TopiceList = () => {
     const {data: topices} = useSuspenseQuery({
@@ -14,7 +14,11 @@ const TopiceList = () => {
                     <li key={topice.id} className='topice'>
                         <Link className='topicLink' href={`/topice/${topice.id}`}>
                             <div className="imgAndTitle">
-                                <img className='folder' src="/images/folder.svg" alt="folderImg" />
+                                <img 
+                                    className='folder' 
+                                    src="/images/folder.svg" 
+                                    alt="folderImg" 
+                                />
                                 <span className='topiceTitle'>{topice.title}</span>
                             </div>
                         </Link>
