@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useSuspenseQuery } from '@tanstack/react-query';
-import topiceListFetchdata from '../utils/TopiceListFetchdata';
+import topiceListFetchdata from '../utils/topiceListFetchdata';
 
 const TopiceList = () => {
     const {data: topices} = useSuspenseQuery({
