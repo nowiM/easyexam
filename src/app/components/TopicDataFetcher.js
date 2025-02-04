@@ -1,6 +1,6 @@
 'use client'
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { fetchTopiceData } from '../utils/fetchTopiceData';
+import fetchTopiceData from '../utils/fetchTopiceData';
 import TopicUpdateForm from './TopicUpdateForm';
 
 const TopicDataFetcher = ({ id }) => {
