@@ -1,4 +1,4 @@
-const scoresCalc = (evaluations, topice, setIsModalOpen, setModalMessage) => {
+const scoresCalc = (evaluations, topice) => {
     const right = evaluations.filter( // 정답
         evaluation => evaluation.correct === 'O'
     ).length; 
