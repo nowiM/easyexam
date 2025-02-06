@@ -13,14 +13,13 @@ const scoresCalc = (evaluations, topice, setIsModalOpen, setModalMessage) => {
 
     const sum = right + wrong; // 전체 문항
 
-    if(sum === 0) {
-        setModalMessage('정답을 체크해주세요!!')
-    } else if (sum < topice.questions) {
-        setModalMessage(`체크하지 않은 문항이 있습니다. 체크하지 않은 문항: ${notCheck.join(', ')}`);
-    } else {
-        setModalMessage(`${topice.questions} 문제 중에 정답: ${right} 오답: ${wrong}`);
-    }
-    setIsModalOpen(true);
+    return {
+        right,
+        wrong,
+        notCheck,
+        sum,
+        totalQuestions: topice.questions
+    };
 };
 
 export default scoresCalc;

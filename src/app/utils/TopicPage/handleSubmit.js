@@ -1,4 +1,5 @@
-const handleSubmit = async (e, id, answers, setIsModalOpen, setModalMessage) => {
+// utils/TopicPage/handleSubmit.js
+const handleSubmit = async (e, id, answers) => {
     e.preventDefault();
 
     try {
@@ -11,17 +12,15 @@ const handleSubmit = async (e, id, answers, setIsModalOpen, setModalMessage) => 
         });
 
         if (response.ok) {
-            setModalMessage('답안이 성공적으로 저장되었습니다.');
+            return { success: true, message: '답안이 성공적으로 저장되었습니다.' };
         } else {
-            setModalMessage('답안을 저장하는데 실패하였습니다. 다시 시도해주세요.');
             console.error('답안 저장 실패:', response.statusText);
+            return { success: false, message: '답안을 저장하는데 실패하였습니다. 다시 시도해주세요.' };
         }
     } catch (error) {
-        setModalMessage('서버와의 통신 중 오류가 발생하였습니다. 다시 시도해주세요.');
         console.error('서버와의 통신 중 오류 발생:', error);
+        return { success: false, message: '서버와의 통신 중 오류가 발생하였습니다. 다시 시도해주세요.' };
     }
-
-    setIsModalOpen(true);
 };
 
 export default handleSubmit;
