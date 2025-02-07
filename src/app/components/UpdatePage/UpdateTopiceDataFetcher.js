@@ -9,7 +9,6 @@ const UpdateTopiceDataFetcher = ({ id }) => {
         queryFn: () => fetchTopiceData(`${process.env.NEXT_PUBLIC_API_URL}api/topices/${id}`),
     });
 
-
     return <UpdateForm topiceData={topiceData} />;
 };
 

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, startTransition } from 'react';
+import React, { useState, useEffect, startTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import handleUpdate from '../../utils/UpdatePage/handleUpdate';
 
@@ -9,6 +9,11 @@ const UpdateForm = ({ topiceData }) => {
     const router = useRouter();
     const id = topiceData.id;
 
+    useEffect(() => {
+        setTitle(topiceData.title);
+        setQuestions(topiceData.questions);
+    }, [topiceData]);
+    
     return (
         <>
             <h2>시험과목 수정</h2>
